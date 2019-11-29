@@ -1,6 +1,8 @@
 import React from 'react';
 import { IPayee } from '../../../core/payee/payee.types';
 
+import './payee-card.style.css';
+
 interface IPayeeCardProps {
   payee: IPayee
 }
