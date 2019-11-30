@@ -1,7 +1,9 @@
 export const testData = [
   { 
+    id: 1,
     firstName: 'Vadik',
     lastName: 'Trotsenko',
+    jobTitle: 'Developer JS',
     email: 'vadik@mail.com',
     address: 'Svobody 11',
     age: 22,
@@ -14,8 +16,10 @@ export const testData = [
     cardNumber: 1232123412447722,
   },
   { 
+    id: 2,
     firstName: 'Emil',
     lastName: 'Kulmuhametov',
+    jobTitle: 'Head of the department JS',
     email: 'emilkul@gmail.com',
     address: 'Kooperativnaya 6a',
     age: 23,
@@ -24,7 +28,7 @@ export const testData = [
     salary: 750,
     country: 'UA',
     city: 'Kharkiv',
-    socialProfileLink: 'https://vk.com/vadiktrocenko',
+    socialProfileLink: 'https://vk.com/id170185455',
     cardNumber: 1232123412447722,
   }
 ]

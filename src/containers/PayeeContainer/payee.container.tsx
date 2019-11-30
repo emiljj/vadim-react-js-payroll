@@ -18,7 +18,7 @@ class PayeeContainer extends React.Component<IPayeeContainerProps, IPayeeContain
     return (
       <div className="payee-container">
         {payees.map((payee: IPayee) => {
-          return <PayeeCard payee={payee} />
+          return <PayeeCard key={payee.id} payee={payee} />
         })}
       </div>
     );
