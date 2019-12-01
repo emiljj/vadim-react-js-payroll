@@ -9,11 +9,18 @@ interface IPayeeCardProps {
 
 const PayeeCard = (props: IPayeeCardProps) => {
   const { payee } = props;
-  console.log('PAYEE => ', payee);
+  const [seeMore, setSeeMore] = React.useState(false);
+  const onSeeMoreButtonClick = () => {
+    setSeeMore(true)
+  };
+
+  const onSeeLessButtonClick = () => {
+    setSeeMore(false);
+  };
   return (
     <div className="payee-card">
       <img className="payee-card__image"
-       src="https://pickaface.net/gallery/avatar/20130828_022324_4848_Crispi.png" 
+       src="https://fakeimg.pl/250x100/" 
       />
       <div className="payee-card__title">
         <div className="name__title">
@@ -29,17 +36,17 @@ const PayeeCard = (props: IPayeeCardProps) => {
         </div>
       </div>
       <div className="payee-card__information">
-        <p>First Name: {payee.firstName}</p>
+        <p><strong>First Name: </strong>{payee.firstName}</p>
         <p>Last Name: {payee.lastName}</p>
         <p>City: {payee.city}</p>
         <p>Address: {payee.address}</p>
-        <p>Social Profile: <a href={payee.socialProfileLink}>View profile</a></p>
-        <p>Email: {payee.email} <a href={payee.emailAddress}>Send message</a></p>
-        <p>Age: {payee.age}</p>
-        {false && <button>See more</button>}
-        {true && 
+        {!seeMore && <button onClick={onSeeMoreButtonClick}>See more</button>}
+        {seeMore && 
           <div>
-            <p>Rest information here ....</p>
+            <p>Social Profile: <a href={payee.socialProfileLink}>View profile</a></p>
+            <p>Email: {payee.email} <a href={payee.emailAddress}>Send message</a></p>
+            <p>Age: {payee.age}</p>
+            <button onClick={onSeeLessButtonClick}>See less</button>
           </div>
         }
       </div>
