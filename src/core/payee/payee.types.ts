@@ -4,6 +4,7 @@ export interface IPayee {
   lastName: string;
   jobTitle: string;
   email: string;
+  emailAddress: string;
   address: string;
   age: number;
   role: string[];

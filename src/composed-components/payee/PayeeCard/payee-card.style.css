@@ -1,7 +1,50 @@
 .payee-card {
-
+  background-color: rgb(246, 203, 81);
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  margin:10px;
+  padding: 30px;
+  width:1000px;
+  height: 250px;
 }
 
 .payee-card__image {
- 
+  height: 240px;
+  width: 22%;
+  margin-right: 20px;
 }
+
+.payee-card__title {
+  height: 280px;
+  width: 50%;
+  margin-right: 20px;
+  padding: 5px;
+}
+
+.name__title {
+  height: 80px;
+  color: rgb(255, 255, 255);
+  font-family: Impact, fantasy;
+  padding-bottom: 5px;
+  font-size: 27px;
+  line-height: 12px;
+}
+.description__title{
+  line-height: 12px;
+  padding-left: 0px;
+  padding-top: 15px;
+  height: 100px;
+  font-weight: 500;
+
+}
+
+.payee-card__information {
+  font-weight: 700;
+  border-left: 2px solid black;
+  padding: 5px;
+  height: 250px;
+  width: 22%;
+  line-height: 15px;
+}
+
