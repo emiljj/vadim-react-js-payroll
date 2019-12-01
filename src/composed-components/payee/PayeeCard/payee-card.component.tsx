@@ -17,6 +17,14 @@ const PayeeCard = (props: IPayeeCardProps) => {
   const onSeeLessButtonClick = () => {
     setSeeMore(false);
   };
+
+  const getRolesList = (payee: IPayee): string => {
+    const { role } = payee;
+    console.log('Role => ', role);
+    const result = 'ADMIN, USER, HEAD_OF_THE_DEPARTMENT';
+    return result
+  }
+
   return (
     <div className="payee-card">
       <img className="payee-card__image"
@@ -46,6 +54,7 @@ const PayeeCard = (props: IPayeeCardProps) => {
             <p>Social Profile: <a href={payee.socialProfileLink}>View profile</a></p>
             <p>Email: {payee.email} <a href={payee.emailAddress}>Send message</a></p>
             <p>Age: {payee.age}</p>
+            <p>Roles: {getRolesList(payee)}</p>
             <button onClick={onSeeLessButtonClick}>See less</button>
           </div>
         }
