@@ -5,34 +5,48 @@
   align-items: center;
   margin:10px;
   padding: 30px;
-  width: 70%;
+  width: 50%;
   height: auto;
 }
 
 .payee-card__image {
   height: 240px;
-  width: 22%;
+  width: 25%;
   margin-right: 20px;
 }
 
 .payee-card__title {
-  width: 50%;
-  margin-right: 20px;
+  border: 2px solid white;
+  height: auto;
   padding: 5px;
 }
 
 .name__title {
+  width: 100%;
+  height: 30%;
   color: rgb(255, 255, 255);
   font-family: Impact, fantasy;
   padding-bottom: 5px;
   font-size: 27px;
-  line-height: 12px;
+  line-height: 50px;
+  border: 1px solid rgb(228, 16, 16);
 }
+
+.job-statuse__title{
+  border: 1px solid rgb(16, 228, 16);
+  width: 100%;
+  height: auto;
+
+}
+
 .description__title{
-  line-height: 12px;
+  width: 100%;
+  height: 20%;
+  line-height: 20px;
   padding-left: 0px;
-  padding-top: 15px;
+  padding-bottom: 20px;
   font-weight: 500;
+  border: 1px solid black;
 }
 
 .payee-card__information {
