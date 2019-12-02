@@ -7,6 +7,13 @@ interface IPayeeCardProps {
   payee: IPayee;
 }
 
+const getRolesList = (payee: IPayee): string => {
+  const { role } = payee;
+  console.log('Role => ', role);
+  const result = 'ADMIN, USER, HEAD_OF_THE_DEPARTMENT';
+  return result
+}
+
 const PayeeCard = (props: IPayeeCardProps) => {
   const { payee } = props;
   const [seeMore, setSeeMore] = React.useState(false);
@@ -17,13 +24,6 @@ const PayeeCard = (props: IPayeeCardProps) => {
   const onSeeLessButtonClick = () => {
     setSeeMore(false);
   };
-
-  const getRolesList = (payee: IPayee): string => {
-    const { role } = payee;
-    console.log('Role => ', role);
-    const result = 'ADMIN, USER, HEAD_OF_THE_DEPARTMENT';
-    return result
-  }
 
   return (
     <div className="payee-card">
@@ -37,24 +37,23 @@ const PayeeCard = (props: IPayeeCardProps) => {
             <h4>{payee.jobTitle}</h4>
           </div>
         </div>
-        <div className="description__title">
-          <p>I like to make cool and creative designs.
-          My design stash is always full of refreshing ideas.
-          Feel free to take a look around my Vcard.</p>
-        </div>
       </div>
       <div className="payee-card__information">
-        <p><strong>First Name: </strong>{payee.firstName}</p>
-        <p>Last Name: {payee.lastName}</p>
-        <p>City: {payee.city}</p>
-        <p>Address: {payee.address}</p>
         {!seeMore && <button onClick={onSeeMoreButtonClick}>See more</button>}
         {seeMore && 
           <div>
-            <p>Social Profile: <a href={payee.socialProfileLink}>View profile</a></p>
-            <p>Email: {payee.email} <a href={payee.emailAddress}>Send message</a></p>
-            <p>Age: {payee.age}</p>
-            <p>Roles: {getRolesList(payee)}</p>
+            <p><strong>First Name: </strong>{payee.firstName}</p>
+            <p><strong>Last Name:</strong>{payee.lastName}</p>
+            <p><strong>City:</strong>{payee.city}</p>
+            <p><strong>Address:</strong>{payee.address}</p>
+            <p><strong>Country:</strong>{payee.country}</p>
+            <p><strong>Social Profile:</strong> <a href={payee.socialProfileLink}>View profile</a></p>
+            <p><strong>Email:</strong>{payee.email} <a href={payee.emailAddress}>Send message</a></p>
+            <p><strong>Age:</strong>{payee.age} </p>
+            <p><strong>Roles:</strong>{getRolesList(payee)}</p>
+            <p><strong>WithHoldingTax:</strong>{payee.withHoldingTax}</p>
+            <p><strong>Salary:</strong>{payee.salary}</p>
+            <p><strong>CardNumber:</strong>{payee.cardNumber}</p>
             <button onClick={onSeeLessButtonClick}>See less</button>
           </div>
         }
