@@ -33,7 +33,7 @@ const PayeeCard = (props: IPayeeCardProps) => {
       <div className="payee-card__title">
         <div className="name__title">
           <h1>{`${payee.firstName} ${payee.lastName}`}</h1> 
-          <div className="job-statuse__title"> 
+          <div className="job-status__title"> 
             <h4>{payee.jobTitle}</h4>
           </div>
         </div>
