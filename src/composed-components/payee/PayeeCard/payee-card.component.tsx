@@ -9,9 +9,8 @@ interface IPayeeCardProps {
 
 const getRolesList = (payee: IPayee): string => {
   const { role } = payee;
-  console.log('Role => ', role);
-  const result = 'ADMIN, USER, HEAD_OF_THE_DEPARTMENT';
-  return result
+  const result = role.join(',');
+  return result;
 }
 
 const PayeeCard = (props: IPayeeCardProps) => {
