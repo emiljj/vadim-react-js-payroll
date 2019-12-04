@@ -3,6 +3,8 @@ import { IPayee } from '../../core/payee/payee.types'
 import { testData } from './test.data';
 import PayeeCard from '../../composed-components/payee/PayeeCard/payee-card.component';
 
+import './payee.container.style.css';
+
 interface IPayeeContainerProps {}
 
 interface IPayeeContainerState {
@@ -13,11 +15,11 @@ class PayeeContainer extends React.Component<IPayeeContainerProps, IPayeeContain
   state = {
     payees: testData
   }
+  
   render() {
-    const { payees } = this.state;
     return (
       <div className="payee-container">
-        {payees.map((payee: IPayee) => {
+        {this.state.payees.map((payee: IPayee) => {
           return <PayeeCard key={payee.id} payee={payee} />
         })}
       </div>

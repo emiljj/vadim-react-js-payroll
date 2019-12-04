@@ -3,7 +3,6 @@
   background-clip: border-box;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: 2px;
-  display: inline-block;
   word-wrap: break-word;
   margin: 10px;
   padding: 0px;
@@ -12,6 +11,7 @@
   box-shadow: 7px 6px 5px 0px rgba(230,230,230,1);
   color: #4c4c4c;
   min-width: 275px;
+  position: relative;
 }
 
 .payee-card__image {
@@ -36,8 +36,6 @@
   height: auto;
 }
 
-.payee-card__information {
-  padding: 5px;
-  width: 95%;
-  line-height: 15px;
+.payee-card__information-content {
+  max-width: 270px;
 }
