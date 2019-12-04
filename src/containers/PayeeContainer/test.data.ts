@@ -36,7 +36,7 @@ export const testData = [
   { 
     id: 3,
     firstName: 'Oleg',
-    lastName: 'Trotsenko',
+    lastName: 'Ivanov',
     jobTitle: 'Developer JS',
     email: 'trocenkovadik@gmail.com',
     emailAddress:'https://mail.google.com/',
@@ -53,7 +53,7 @@ export const testData = [
   { 
     id: 4,
     firstName: 'Maksim',
-    lastName: 'Trotsenko',
+    lastName: 'Sidorov',
     jobTitle: 'Developer JS',
     email: 'trocenkovadik@gmail.com',
     emailAddress:'https://mail.google.com/',
@@ -70,7 +70,7 @@ export const testData = [
   { 
     id: 5,
     firstName: 'Kolya',
-    lastName: 'Trotsenko',
+    lastName: 'Petrov',
     jobTitle: 'Developer JS',
     email: 'trocenkovadik@gmail.com',
     emailAddress:'https://mail.google.com/',
