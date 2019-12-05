@@ -13,7 +13,8 @@ interface IPayeeContainerState {
 
 class PayeeContainer extends React.Component<IPayeeContainerProps, IPayeeContainerState> {
   state = {
-    payees: testData
+    payees: testData,
+    activeId: null
   }
   
   render() {
