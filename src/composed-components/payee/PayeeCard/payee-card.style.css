@@ -1,12 +1,12 @@
 .payee-card {
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0,0,0,.125);
-  border-radius: 2px;
+  border: 1px solid rgba(115, 115, 115, 0.125);
+  border-radius: 4px;
   word-wrap: break-word;
   margin: 10px;
   padding: 0px;
-  width: 17%;
+  width: 15%;
   height: auto;
   box-shadow: 7px 6px 5px 0px rgba(230,230,230,1);
   color: #4c4c4c;
@@ -15,7 +15,7 @@
 }
 
 .payee-card__image {
-  height: auto;
+  height: 205px;
   width: 100%;
 }
 
@@ -33,11 +33,13 @@
 
 .payee-card__information-content {
   z-index: 2;
-  top:275px;
+  top: calc(100% + 20px);
   position: absolute;
   max-width: 270px;
   box-shadow: 7px 6px 5px 0px rgba(230,230,230,1);
-  background-color: rgb(231, 230, 229);
+  border: 1px solid rgba(115, 115, 115, 0.125);
+  background-color: #fff;
+  border-radius: 4px;
   padding: 10px;
 }
 
