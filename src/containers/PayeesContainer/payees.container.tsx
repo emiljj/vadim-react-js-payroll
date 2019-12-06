@@ -20,15 +20,24 @@ class PayeesContainer extends React.Component<IPayeeContainerProps, IPayeeContai
 
   calculatePayeesTotalSalary = (): number => {
     const { payees } = this.state;
-    return 777;
+    return payees.reduce((acc, item) => acc + item.salary, 0);
   }
 
-  getUsersAdminsListNames = (): string => {
-    return 'Emil, Valera';
+  getUsersAdminsListNames = (): string[] => {
+    return ['Petro']
   }
 
   findHighestSalary = (): number => {
-    return 10000
+    const { payees } = this.state;
+    let HighestSalary = payees[0];
+    for (let i = 0; i < payees.length; i++) {
+      const Salaries = payees[i];
+      const UserSalary = Salaries.salary;
+      if (HighestSalary.salary < UserSalary) {
+        HighestSalary = Salaries;
+      }
+    }
+    return HighestSalary.salary
   }
 
   setOpenedId = (id: number | null): void => {
@@ -47,10 +56,10 @@ class PayeesContainer extends React.Component<IPayeeContainerProps, IPayeeContai
             <p>Total salary: {this.calculatePayeesTotalSalary()} </p> 
           </div>
           <div>
-            <p>Admin: {'Admin Name'}</p>
+            <p>Admin: {this.getUsersAdminsListNames()}</p>
           </div>
           <div>
-            <p>Highest salary: {1000}</p>
+            <p>Highest salary: {this.findHighestSalary()}</p>
           </div>
         </div>
         <div className="payee-container__payees-list">
