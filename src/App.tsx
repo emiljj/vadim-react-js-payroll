@@ -1,10 +1,10 @@
 import React from 'react';
-import PayeeContainer from './containers/PayeeContainer/payee.container';
+import PayeesContainer from './containers/PayeesContainer/payees.container';
 
 const App: React.FC = () => {
   return (
     <div className="app">
-      <PayeeContainer />
+      <PayeesContainer />
     </div>
   );
 }

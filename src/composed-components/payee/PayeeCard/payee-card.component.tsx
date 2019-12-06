@@ -5,6 +5,9 @@ import './payee-card.style.css';
 
 interface IPayeeCardProps {
   payee: IPayee;
+  isOpened: boolean;
+  handleSeeMoreBtnClick: () => void;
+  handleSeeLessBtnClick: () => void;
 }
 
 const getRolesList = (payee: IPayee): string => {
@@ -14,15 +17,7 @@ const getRolesList = (payee: IPayee): string => {
 }
 
 const PayeeCard = (props: IPayeeCardProps) => {
-  const { payee } = props;
-  const [seeMore, setSeeMore] = React.useState(false);
-  const onSeeMoreButtonClick = () => {
-    setSeeMore(true)
-  };
-
-  const onSeeLessButtonClick = () => {
-    setSeeMore(false);
-  };
+  const { payee, isOpened, handleSeeMoreBtnClick, handleSeeLessBtnClick } = props;
 
   return (
     <div className="payee-card">
@@ -31,14 +26,14 @@ const PayeeCard = (props: IPayeeCardProps) => {
       />
       <div className="payee-card__title">
         <div className="name__title">
-          <h1>{`${payee.firstName} ${payee.lastName}`}</h1> 
+          <h3>{`${payee.firstName} ${payee.lastName}`}</h3> 
           <div className="job-status__title"> 
             <h4>{payee.jobTitle}</h4>
           </div>
         </div>
       </div>
-      {!seeMore && <button onClick={onSeeMoreButtonClick}>See more</button>}
-      {seeMore && 
+      {!isOpened && <button onClick={handleSeeMoreBtnClick}>See more</button>}
+      {isOpened && 
         <div className="payee-card__information-content">
           <p><strong>First Name: </strong>{payee.firstName}</p>
           <p><strong>Last Name:</strong>{payee.lastName}</p>
@@ -52,7 +47,7 @@ const PayeeCard = (props: IPayeeCardProps) => {
           <p><strong>WithHoldingTax:</strong>{payee.withHoldingTax}</p>
           <p><strong>Salary:</strong>{payee.salary}</p>
           <p><strong>CardNumber:</strong>{payee.cardNumber}</p>
-          <button onClick={onSeeLessButtonClick}>See less</button>
+          <button onClick={handleSeeLessBtnClick}>See less</button>
         </div>
       }
     </div>
