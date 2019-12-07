@@ -69,7 +69,7 @@ export const testData = [
   },
   { 
     id: 5,
-    firstName: 'Kolya',
+    firstName: 'Valentin',
     lastName: 'Petrov',
     jobTitle: 'Developer JS',
     email: 'trocenkovadik@gmail.com',
@@ -86,7 +86,7 @@ export const testData = [
   },
   { 
     id: 5534343,
-    firstName: 'Kolya',
+    firstName: 'Vasya',
     lastName: 'Petrov',
     jobTitle: 'Developer JS',
     email: 'trocenkovadik@gmail.com',
@@ -104,7 +104,7 @@ export const testData = [
   { 
     id: 55343432132132321321321312,
     firstName: 'Kolya',
-    lastName: 'Petrov',
+    lastName: 'Zadorozniy',
     jobTitle: 'Developer JS',
     email: 'trocenkovadik@gmail.com',
     emailAddress:'https://mail.google.com/',
@@ -112,7 +112,7 @@ export const testData = [
     age: 22,
     role: ['USER'],
     withHoldingTax: 0.5,
-    salary: 400,
+    salary: 300,
     country: 'UA',
     city: 'Rubezhnoe',
     socialProfileLink: 'https://vk.com/vadiktrocenko',

@@ -23,21 +23,22 @@ class PayeesContainer extends React.Component<IPayeeContainerProps, IPayeeContai
     return payees.reduce((acc, item) => acc + item.salary, 0);
   }
 
-  getUsersAdminsListNames = (): string[] => {
-    return ['Petro']
+  getUsersAdminsListNames = (): string => {
+    const { payees } = this.state;
+    return 'ADMIN'
   }
 
   findHighestSalary = (): number => {
     const { payees } = this.state;
-    let HighestSalary = payees[0];
+    let userData = payees[0];
     for (let i = 0; i < payees.length; i++) {
-      const Salaries = payees[i];
-      const UserSalary = Salaries.salary;
-      if (HighestSalary.salary < UserSalary) {
-        HighestSalary = Salaries;
+      const payee = payees[i];
+      const userSalary = payee.salary;
+      if (userData.salary < userSalary) {
+        userData = payee;
       }
     }
-    return HighestSalary.salary
+    return userData.salary
   }
 
   setOpenedId = (id: number | null): void => {
