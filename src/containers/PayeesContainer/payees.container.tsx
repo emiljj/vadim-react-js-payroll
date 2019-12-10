@@ -32,7 +32,7 @@ class PayeesContainer extends React.Component<IPayeeContainerProps, IPayeeContai
       const role = payee.role;
       const name = `${payee.firstName} ${payee.lastName}`;
       if (role.includes(admin)) {
-        const comma = payeesAdmins.length ? ‘, ’ : ‘’;
+        const comma = payeesAdmins.length ? ", " : "";
        payeesAdmins = payeesAdmins + comma + name;
       }
     });
@@ -47,7 +47,7 @@ class PayeesContainer extends React.Component<IPayeeContainerProps, IPayeeContai
       const name = `${payee.firstName} ${payee.lastName}`;
       
       if (role.includes(admin))  {
-        const comma = acc.length ? ‘, ’ : ‘’;
+        const comma = acc.length ? ", " : "";
         return acc + comma + name;
       }
       return acc;
@@ -95,17 +95,17 @@ class PayeesContainer extends React.Component<IPayeeContainerProps, IPayeeContai
           </div>
         </div>
         <div className="payee-container__payees-list">
-        {payees.map((payee: IPayee) => {
-          const isOpened: boolean = activeId === payee.id;
-          return (
-            <PayeeCard
-              payee={payee}
-              key={payee.id}
-              isOpened={isOpened}
-              handleSeeMoreBtnClick={() => this.setOpenedId(payee.id)}
-              handleSeeLessBtnClick={() => this.setOpenedId(null)}
-            />)
-        })}
+          {payees.map((payee: IPayee) => {
+            const isOpened: boolean = activeId === payee.id;
+            return (
+              <PayeeCard
+                payee={payee}
+                key={payee.id}
+                isOpened={isOpened}
+                handleSeeMoreBtnClick={() => this.setOpenedId(payee.id)}
+                handleSeeLessBtnClick={() => this.setOpenedId(null)}
+              />)
+          })}
         </div>
       </div>
     );

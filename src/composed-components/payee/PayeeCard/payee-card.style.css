@@ -8,7 +8,7 @@
   padding: 0px;
   width: 15%;
   height: auto;
-  box-shadow: 7px 6px 5px 0px rgba(230,230,230,1);
+  box-shadow: 7px 6px 5px 0px rgba(230, 230, 230, 1);
   color: #4c4c4c;
   min-width: 275px;
   position: relative;
@@ -39,7 +39,7 @@
   padding: 10px;
 }
 
-.payee-card__information{
+.payee-card__information {
   position: absolute;
   top: calc(100% + 20px);
   z-index: 2;
@@ -49,7 +49,7 @@
   border-radius: 4px;
 }
 
-.payee-card__triangle::after{
+.payee-card__triangle::after {
   content: '';
   position: absolute;
   left: 10%;
