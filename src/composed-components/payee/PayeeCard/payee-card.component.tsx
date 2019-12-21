@@ -8,6 +8,7 @@ interface IPayeeCardProps {
   isOpened: boolean;
   handleSeeMoreBtnClick: () => void;
   handleSeeLessBtnClick: () => void;
+  handleDeleteBtnClick: () => void;
 }
 
 const getRolesList = (payee: IPayee): string => {
@@ -22,11 +23,16 @@ const PayeeCard = (props: IPayeeCardProps) => {
     isOpened,
     handleSeeMoreBtnClick,
     handleSeeLessBtnClick,
+    handleDeleteBtnClick,
   } = props;
 
   return (
     <div className="payee-card">
-      <img className="payee-card__image" src="https://fakeimg.pl/250x100/" />
+      <img
+        className="payee-card__image"
+        alt=""
+        src="https://fakeimg.pl/250x100/"
+      />
       <div className="payee-card__title">
         <div className="name__title">
           <h3>{`${payee.firstName} ${payee.lastName}`}</h3>
@@ -35,6 +41,9 @@ const PayeeCard = (props: IPayeeCardProps) => {
           </div>
         </div>
       </div>
+      <button className="button-delete" onClick={handleDeleteBtnClick}>
+        Delete
+      </button>
       {!isOpened && <button onClick={handleSeeMoreBtnClick}>See more</button>}
       {isOpened && (
         <div className="payee-card__information">

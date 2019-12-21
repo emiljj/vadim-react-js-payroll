@@ -2,8 +2,10 @@ import React from 'react';
 import { IPayee } from '../../core/payee/payee.types';
 import { testData } from './test.data';
 import PayeeCard from '../../composed-components/payee/PayeeCard/payee-card.component';
+import PayeeForm from '../../composed-components/payee/PayeeForm/payee-form.component';
 
 import './payees.container.style.css';
+import PayeePageHeader from './PayeePageHeader';
 
 interface IPayeeContainerProps {}
 
@@ -11,7 +13,7 @@ interface IPayeeContainerState {
   payees: IPayee[];
   activeId: number | null;
   formOpened: boolean;
-  formAddOpened: boolean;
+  formClosed: boolean;
 }
 
 class PayeesContainer extends React.Component<
@@ -22,7 +24,7 @@ class PayeesContainer extends React.Component<
     payees: testData,
     activeId: null,
     formOpened: false,
-    formAddOpened: false,
+    formClosed: true,
   };
 
   calculatePayeesTotalSalary = (): number => {
@@ -44,7 +46,7 @@ class PayeesContainer extends React.Component<
       return acc;
     }, '');
   };
-
+  //  TODO : use forEeach
   findHighestSalary = (): number => {
     const { payees } = this.state;
     let userData = payees[0];
@@ -55,66 +57,60 @@ class PayeesContainer extends React.Component<
         userData = payee;
       }
     }
-    return userData.salary;
+    if (userData) {
+      return userData.salary;
+    }
+    return 0;
   };
 
   setOpenedId = (id: number | null): void => {
     this.setState({ activeId: id });
   };
 
-  OpenForm = (): void => {
+  deletePayee = (payeeId: number) => {
+    const filtered = this.state.payees.filter(item => item.id !== payeeId);
+    this.setState({ payees: filtered });
+  };
+
+  openForm = (): void => {
     this.setState({ formOpened: true });
   };
 
-  OpenAddForm = (): void => {
-    this.setState({ formAddOpened: true });
+  closeForm = (): void => {
+    this.setState({ formOpened: false });
   };
 
   render() {
-    const { activeId, payees, formOpened, formAddOpened } = this.state;
-    const payeesList = (
-      <div className="payee-container__payees-list">
-        {payees.map((payee: IPayee) => {
-          const isOpened: boolean = activeId === payee.id;
-          return (
-            <PayeeCard
-              payee={payee}
-              key={payee.id}
-              isOpened={isOpened}
-              handleSeeMoreBtnClick={() => this.setOpenedId(payee.id)}
-              handleSeeLessBtnClick={() => this.setOpenedId(null)}
-            />
-          );
-        })}
-      </div>
-    );
+    const { activeId, payees, formOpened } = this.state;
     return (
       <div className="payee-container">
-        <div className="payee-container__header">
-          <div>
-            <p>Payees count: {payees.length} </p>
-          </div>
-          <div>
-            <p>Total salary: {this.calculatePayeesTotalSalary()} </p>
-          </div>
-          <div>
-            <p>Admin: {this.getUsersAdminsListNames()}</p>
-          </div>
-          <div>
-            <p>Highest salary: {this.findHighestSalary()}</p>
-          </div>
-          <button onClick={this.OpenForm}>ADD</button>
-        </div>
+        <PayeePageHeader
+          payeesCount={payees.length}
+          totalSalary={this.calculatePayeesTotalSalary()}
+          adminNames={this.getUsersAdminsListNames()}
+          highestSalary={this.findHighestSalary()}
+          onAddButtonClick={this.openForm}
+        />
         {!formOpened ? (
-          payeesList
+          <div className="payee-container__payees-list">
+            {payees.map((payee: IPayee) => {
+              const isOpened: boolean = activeId === payee.id;
+              return (
+                <PayeeCard
+                  payee={payee}
+                  key={payee.id}
+                  isOpened={isOpened}
+                  handleSeeMoreBtnClick={() => this.setOpenedId(payee.id)}
+                  handleSeeLessBtnClick={() => this.setOpenedId(null)}
+                  handleDeleteBtnClick={() => this.deletePayee(payee.id)}
+                />
+              );
+            })}
+          </div>
         ) : (
           <div>
-            {!formAddOpened ? (
-              <div>
-                <button onClick={this.OpenAddForm}>Cancel</button>
-                <p>Form added users</p>
-              </div>
-            ) : null}
+            <PayeeForm />
+            <button onClick={this.closeForm}>Cancel</button>
           </div>
         )}
       </div>
