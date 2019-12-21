@@ -46,17 +46,17 @@ class PayeesContainer extends React.Component<
       return acc;
     }, '');
   };
-  //  TODO : use forEeach
+
   findHighestSalary = (): number => {
     const { payees } = this.state;
     let userData = payees[0];
-    for (let i = 0; i < payees.length; i++) {
-      const payee = payees[i];
+    payees.forEach(item => {
+      const payee = item;
       const userSalary = payee.salary;
       if (userData.salary < userSalary) {
         userData = payee;
       }
-    }
+    });
     if (userData) {
       return userData.salary;
     }
@@ -109,8 +109,10 @@ class PayeesContainer extends React.Component<
           </div>
         ) : (
           <div>
-            <PayeeForm />
-            <button onClick={this.closeForm}>Cancel</button>
+            <PayeeForm
+              onClose={() => console.log('Close Work')}
+              onSave={() => console.log('Save Work')}
+            />
           </div>
         )}
       </div>
