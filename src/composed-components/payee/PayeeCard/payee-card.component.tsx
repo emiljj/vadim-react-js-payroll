@@ -44,7 +44,11 @@ const PayeeCard = (props: IPayeeCardProps) => {
       <button className="button-delete" onClick={handleDeleteBtnClick}>
         Delete
       </button>
-      {!isOpened && <button onClick={handleSeeMoreBtnClick}>See more</button>}
+      {!isOpened && (
+        <button className="button-seeMore" onClick={handleSeeMoreBtnClick}>
+          See more
+        </button>
+      )}
       {isOpened && (
         <div className="payee-card__information">
           <div className="payee-card__triangle" />

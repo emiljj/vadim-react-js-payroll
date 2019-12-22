@@ -9,12 +9,12 @@
   border-radius: 15px;
 }
 
-.one {
+.columnLeft {
   width: 40%;
   margin-right: 25px;
 }
 
-.two {
+.columnRight {
   width: 40%;
 }
 
@@ -46,11 +46,17 @@
 
 .payee-form-cansel,
 .payee-form-save {
+  position: relative;
+  margin-left: 2.3%;
+  margin-bottom: 10px;
+  border-radius: 5px;
   background-color: rgb(21, 21, 218);
   color: white;
   font-size: 15px;
-  padding: 10px;
-  margin: 10px;
+  padding: 7px;
+}
+.payee-form-save {
+  margin-left: 30%;
 }
 
 .payee-form-cansel,

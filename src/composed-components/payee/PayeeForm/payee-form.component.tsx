@@ -3,7 +3,7 @@ import React from 'react';
 import './payee-form.style.css';
 
 interface IPayeeFormProps {
-  onClose: () => void;
+  onClose: (isOpened: any) => void;
   onSave: (data: any) => void;
 }
 
@@ -11,11 +11,33 @@ interface IPayeeFormState {}
 
 const formFields = {
   firstName: 'firstName',
+  lastName: 'lastName',
+  jobTitle: 'jobTitle',
+  email: 'email',
+  address: 'address',
+  age: 'age',
+  withHoldingTax: 'withHoldingTax',
+  salary: 'salary',
+  country: 'country',
+  city: 'city',
+  socialProfileLink: 'socialProfileLink',
+  cardNumber: 'cardNumber',
 };
 
 class PayeeForm extends React.Component<IPayeeFormProps, IPayeeFormState> {
   state = {
     [formFields.firstName]: '',
+    [formFields.lastName]: '',
+    [formFields.jobTitle]: '',
+    [formFields.email]: '',
+    [formFields.address]: '',
+    [formFields.age]: 18,
+    [formFields.withHoldingTax]: 0,
+    [formFields.salary]: 0,
+    [formFields.country]: '',
+    [formFields.city]: '',
+    [formFields.socialProfileLink]: '',
+    [formFields.cardNumber]: 0,
   };
 
   onChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,10 +49,11 @@ class PayeeForm extends React.Component<IPayeeFormProps, IPayeeFormState> {
 
   render() {
     const { onSave } = this.props;
+    const { onClose } = this.props;
     return (
       <div>
         <div className="payee-form">
-          <div className="one">
+          <div className="columnLeft">
             <label htmlFor={formFields.firstName} className="label">
               First Name
             </label>
@@ -42,120 +65,133 @@ class PayeeForm extends React.Component<IPayeeFormProps, IPayeeFormState> {
               id={formFields.firstName}
               placeholder="Enter name"
             />
-            <label htmlFor="lastName" className="label">
+            <label htmlFor={formFields.lastName} className="label">
               Last Name
             </label>
             <input
               className="input"
               type="text"
-              id="lastName"
+              onChange={this.onChange(formFields.lastName)}
+              id={formFields.lastName}
               placeholder="Enter last name"
             />
 
-            <label htmlFor="jobTitle" className="label">
+            <label htmlFor={formFields.jobTitle} className="label">
               Job Title
             </label>
             <input
               className="input"
               type="text"
-              id="jobTitle"
+              onChange={this.onChange(formFields.jobTitle)}
+              id={formFields.jobTitle}
               placeholder="Enter job title"
             />
 
-            <label htmlFor="email" className="label">
+            <label htmlFor={formFields.email} className="label">
               Email
             </label>
             <input
               className="input"
               type="text"
-              id="email"
+              onChange={this.onChange(formFields.email)}
+              id={formFields.email}
               placeholder="Enter email"
             />
 
-            <label htmlFor="address" className="label">
+            <label htmlFor={formFields.address} className="label">
               Address
             </label>
             <input
               className="input"
               type="text"
-              id="address"
+              onChange={this.onChange(formFields.address)}
+              id={formFields.address}
               placeholder="Enter address"
             />
 
-            <label htmlFor="age" className="label">
+            <label htmlFor={formFields.age} className="label">
               Age
             </label>
             <input
               className="input"
-              type="text"
-              id="age"
+              type="number"
+              onChange={this.onChange(formFields.age)}
+              id={formFields.age}
               placeholder="Enter age"
             />
           </div>
 
-          <div className="two">
-            <label htmlFor="withHoldingTax" className="label">
+          <div className="columnRight">
+            <label htmlFor={formFields.withHoldingTax} className="label">
               With Holding Tax
             </label>
             <input
               className="input"
-              type="text"
-              id="withHoldingTax"
+              type="number"
+              onChange={this.onChange(formFields.withHoldingTax)}
+              id={formFields.withHoldingTax}
               placeholder="Enter with holding tax"
             />
 
-            <label htmlFor="salary" className="label">
+            <label htmlFor={formFields.salary} className="label">
               Salary
             </label>
             <input
               className="input"
               type="number"
-              id="salary"
+              onChange={this.onChange(formFields.salary)}
+              id={formFields.salary}
               placeholder="Enter salary"
             />
 
-            <label htmlFor="country" className="label">
+            <label htmlFor={formFields.country} className="label">
               Country
             </label>
             <input
               className="input"
               type="text"
-              id="country"
+              onChange={this.onChange(formFields.country)}
+              id={formFields.country}
               placeholder="Enter country"
             />
 
-            <label htmlFor="city" className="label">
+            <label htmlFor={formFields.city} className="label">
               City
             </label>
             <input
               className="input"
               type="text"
-              id="city"
+              onChange={this.onChange(formFields.city)}
+              id={formFields.city}
               placeholder="Enter city"
             />
 
-            <label htmlFor="socialProfileLink" className="label">
+            <label htmlFor={formFields.socialProfileLink} className="label">
               Social Profile Link
             </label>
             <input
               className="input"
               type="text"
-              id="socialProfileLink"
+              onChange={this.onChange(formFields.socialProfileLink)}
+              id={formFields.socialProfileLink}
               placeholder="Enter social profile link"
             />
 
-            <label htmlFor="cardNumber" className="label">
+            <label htmlFor={formFields.cardNumber} className="label">
               Card Number
             </label>
             <input
               className="input"
-              type="text"
-              id="cardNumber"
+              type="number"
+              onChange={this.onChange(formFields.cardNumber)}
+              id={formFields.cardNumber}
               placeholder="Enter card number"
             />
           </div>
         </div>
-        <button className="payee-form-cansel" onClick={() => {}}>
+        <button
+          className="payee-form-cansel"
+          onClick={() => onClose(this.state)}>
           Cancel
         </button>
         <button className="payee-form-save" onClick={() => onSave(this.state)}>

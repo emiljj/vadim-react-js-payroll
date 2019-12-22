@@ -115,10 +115,7 @@ class PayeesContainer extends React.Component<
           </div>
         ) : (
           <div>
-            <PayeeForm
-              onClose={() => console.log('Close Work')}
-              onSave={this.createPayee}
-            />
+            <PayeeForm onClose={this.closeForm} onSave={this.createPayee} />
           </div>
         )}
       </div>
