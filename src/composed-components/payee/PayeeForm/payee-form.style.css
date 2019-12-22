@@ -11,27 +11,17 @@
 
 .one {
   width: 40%;
-  padding: 10px;
-  line-height: 30px;
+  margin-right: 25px;
 }
 
 .two {
   width: 40%;
-  padding: 10px;
-  line-height: 30px;
 }
 
 .label {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 25px;
+  font-size: 14px;
   letter-spacing: 1px;
-  word-spacing: 1px;
-  color: #000000;
   font-weight: 400;
-  text-decoration: none solid rgb(68, 68, 68);
-  font-style: italic;
-  font-variant: small-caps;
-  text-transform: none;
 }
 
 .input {

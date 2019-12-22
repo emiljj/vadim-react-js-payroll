@@ -80,6 +80,12 @@ class PayeesContainer extends React.Component<
     this.setState({ formOpened: false });
   };
 
+  // Generate ID with Math.random()
+  createPayee = (data: any) => {
+    console.log('DATA => ', data);
+    this.closeForm();
+  };
+
   render() {
     const { activeId, payees, formOpened } = this.state;
     return (
@@ -111,7 +117,7 @@ class PayeesContainer extends React.Component<
           <div>
             <PayeeForm
               onClose={() => console.log('Close Work')}
-              onSave={() => console.log('Save Work')}
+              onSave={this.createPayee}
             />
           </div>
         )}

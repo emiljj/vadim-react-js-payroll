@@ -13,5 +13,5 @@ export interface IPayee {
   country: string;
   city: string;
   socialProfileLink: string;
-  cardNumber: number;
+  cardNumber: string;
 }
