@@ -82,7 +82,17 @@ class PayeesContainer extends React.Component<
 
   // Generate ID with Math.random()
   createPayee = (data: any) => {
-    console.log('DATA => ', data);
+    const { payees } = this.state;
+    const newDate = {
+      id: Math.random(),
+      role: ['USER'],
+    };
+    const newPayee = Object.assign(data, newDate);
+    const newArrPayees = [];
+    newArrPayees.push(newPayee);
+    const updatedPayees = newArrPayees.concat(payees);
+    console.log(updatedPayees);
+    this.setState({ payees: updatedPayees });
     this.closeForm();
   };
 
