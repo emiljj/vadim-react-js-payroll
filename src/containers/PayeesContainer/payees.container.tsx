@@ -80,7 +80,7 @@ class PayeesContainer extends React.Component<
     this.setState({ formOpened: false });
   };
 
-  // Generate ID with Math.random()
+  // TODO: Refactor this
   createPayee = (data: any) => {
     const { payees } = this.state;
     const newDate = {
