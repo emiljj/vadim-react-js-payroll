@@ -80,19 +80,14 @@ class PayeesContainer extends React.Component<
     this.setState({ formOpened: false });
   };
 
-  // TODO: Refactor this
   createPayee = (data: any) => {
     const { payees } = this.state;
-    const newDate = {
+    const newPayee = Object.assign(data, {
       id: Math.random(),
       role: ['USER'],
-    };
-    const newPayee = Object.assign(data, newDate);
-    const newArrPayees = [];
-    newArrPayees.push(newPayee);
-    const updatedPayees = newArrPayees.concat(payees);
-    console.log(updatedPayees);
-    this.setState({ payees: updatedPayees });
+    });
+    const newPayeesList = [newPayee, ...payees];
+    this.setState({ payees: newPayeesList });
     this.closeForm();
   };
 

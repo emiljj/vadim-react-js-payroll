@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './payees.container.style.css';
 
@@ -8,6 +9,7 @@ interface IPayeePageHeaderProps {
   adminNames: string;
   highestSalary: number;
   onAddButtonClick: () => void;
+  count: number;
 }
 
 const PayeePageHeader = (props: IPayeePageHeaderProps) => {
@@ -17,9 +19,13 @@ const PayeePageHeader = (props: IPayeePageHeaderProps) => {
     adminNames,
     highestSalary,
     onAddButtonClick,
+    count,
   } = props;
   return (
     <div className="payee-container__header">
+      <div>
+        <p>Test: {count} </p>
+      </div>
       <div>
         <p>Payees count: {payeesCount} </p>
       </div>
@@ -38,5 +44,7 @@ const PayeePageHeader = (props: IPayeePageHeaderProps) => {
     </div>
   );
 };
-
-export default PayeePageHeader;
+const mapStateToProps = (state: number) => {
+  return { count: state };
+};
+export default connect(mapStateToProps)(PayeePageHeader);
