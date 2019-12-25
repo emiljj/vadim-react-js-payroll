@@ -1,16 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { IPayee } from '../../core/payee/payee.types';
-import { testData } from './test.data';
 import PayeeCard from '../../composed-components/payee/PayeeCard/payee-card.component';
 import PayeeForm from '../../composed-components/payee/PayeeForm/payee-form.component';
+import { createPayeeAction } from '../../core/actions';
 
 import './payees.container.style.css';
 import PayeePageHeader from './PayeePageHeader';
+import { ActionCreator, AnyAction } from 'redux';
 
-interface IPayeeContainerProps {}
+interface IPayeeContainerProps {
+  payees: IPayee[];
+  createPayeeAction: ActionCreator<AnyAction>;
+}
 
 interface IPayeeContainerState {
-  payees: IPayee[];
   activeId: number | null;
   formOpened: boolean;
   formClosed: boolean;
@@ -21,19 +25,18 @@ class PayeesContainer extends React.Component<
   IPayeeContainerState
 > {
   state = {
-    payees: testData,
     activeId: null,
     formOpened: false,
     formClosed: true,
   };
 
   calculatePayeesTotalSalary = (): number => {
-    const { payees } = this.state;
-    return payees.reduce((acc, item) => acc + item.salary, 0);
+    const { payees } = this.props;
+    return payees.reduce((acc, item) => acc + Number(item.salary), 0);
   };
 
   getUsersAdminsListNames = (): string => {
-    const { payees } = this.state;
+    const { payees } = this.props;
     return payees.reduce((acc, payee) => {
       const admin = 'ADMIN';
       const role = payee.role;
@@ -48,7 +51,7 @@ class PayeesContainer extends React.Component<
   };
 
   findHighestSalary = (): number => {
-    const { payees } = this.state;
+    const { payees } = this.props;
     let userData = payees[0];
     payees.forEach(item => {
       const payee = item;
@@ -68,8 +71,7 @@ class PayeesContainer extends React.Component<
   };
 
   deletePayee = (payeeId: number) => {
-    const filtered = this.state.payees.filter(item => item.id !== payeeId);
-    this.setState({ payees: filtered });
+    // const filtered = this.props.payees.filter(item => item.id !== payeeId);
   };
 
   openForm = (): void => {
@@ -81,18 +83,17 @@ class PayeesContainer extends React.Component<
   };
 
   createPayee = (data: any) => {
-    const { payees } = this.state;
     const newPayee = Object.assign(data, {
       id: Math.random(),
       role: ['USER'],
     });
-    const newPayeesList = [newPayee, ...payees];
-    this.setState({ payees: newPayeesList });
+    this.props.createPayeeAction(newPayee);
     this.closeForm();
   };
 
   render() {
-    const { activeId, payees, formOpened } = this.state;
+    const { activeId, formOpened } = this.state;
+    const { payees } = this.props;
     return (
       <div className="payee-container">
         <PayeePageHeader
@@ -128,4 +129,14 @@ class PayeesContainer extends React.Component<
   }
 }
 
-export default PayeesContainer;
+const mapStateToProps = (state: any) => {
+  return {
+    payees: state.payees,
+  };
+};
+
+const dispatchToProps = {
+  createPayeeAction,
+};
+
+export default connect(mapStateToProps, dispatchToProps)(PayeesContainer);

@@ -1,22 +1,9 @@
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import reducer from './reducer';
 
-function testReducer(state = 0, action: any) {
-  console.log('action', action);
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + (action.payload || 1);
-    case 'DECREMENT':
-      return state - (action.payload || 1);
-    default:
-      return state;
-  }
-}
-
-export default function configureStore(initialState = 0) {
+export default function configureStore(initialState = {}) {
   const composeEnhancers = composeWithDevTools({});
-
-  const store = createStore(testReducer, initialState, composeEnhancers());
-
+  const store = createStore(reducer, initialState, composeEnhancers());
   return store;
 }

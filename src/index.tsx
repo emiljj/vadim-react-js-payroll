@@ -8,12 +8,6 @@ import { Provider } from 'react-redux';
 
 const store = configureStore();
 
-store.dispatch({ type: 'INCREMENT', payload: 3 });
-store.dispatch({ type: 'INCREMENT', payload: 8 });
-store.dispatch({ type: 'INCREMENT' });
-store.dispatch({ type: 'INCREMENT', payload: 6 });
-store.dispatch({ type: 'DECREMENT', payload: 10 });
-console.log('state=>>', store.getState());
 const WrappedWithProvider = (
   <Provider store={store}>
     <App />

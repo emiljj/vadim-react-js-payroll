@@ -41,9 +41,14 @@ class PayeeForm extends React.Component<IPayeeFormProps, IPayeeFormState> {
   };
 
   onChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('On change working!!!!!!!!', { field, value: e.target.value });
+    let value: string | number = e.target.value;
+
+    if (e.target.type === 'number') {
+      value = +e.target.value;
+    }
+
     this.setState({
-      [field]: e.target.value,
+      [field]: value,
     });
   };
 
