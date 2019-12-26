@@ -20,6 +20,9 @@ const PayeePageHeader = (props: IPayeePageHeaderProps) => {
   return (
     <div className="payee-container__header">
       <div>
+        <p>Company balance: {100000} </p>
+      </div>
+      <div>
         <p>Payees count: {payeesCount} </p>
       </div>
       <div>

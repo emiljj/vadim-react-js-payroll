@@ -19,6 +19,7 @@ const initialState = [
     city: 'Kharkiv',
     socialProfileLink: 'https://vk.com/id170185455',
     cardNumber: '1232123412447722',
+    active: false,
   },
 ];
 

@@ -87,6 +87,7 @@ class PayeesContainer extends React.Component<
     const newPayee = Object.assign(data, {
       id: Math.random(),
       role: ['USER'],
+      active: false,
     });
     this.props.createPayeeAction(newPayee);
     this.closeForm();

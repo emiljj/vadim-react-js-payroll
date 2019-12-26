@@ -14,4 +14,5 @@ export interface IPayee {
   city: string;
   socialProfileLink: string;
   cardNumber: string;
+  active: boolean;
 }
