@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { IPayee } from '../../core/payee/payee.types';
 import PayeeCard from '../../composed-components/payee/PayeeCard/payee-card.component';
 import PayeeForm from '../../composed-components/payee/PayeeForm/payee-form.component';
-import { createPayeeAction } from '../../core/actions';
+import { createPayeeAction, deletePayeeAction } from '../../core/actions';
 
 import './payees.container.style.css';
 import PayeePageHeader from './PayeePageHeader';
@@ -12,6 +12,7 @@ import { ActionCreator, AnyAction } from 'redux';
 interface IPayeeContainerProps {
   payees: IPayee[];
   createPayeeAction: ActionCreator<AnyAction>;
+  deletePayeeAction: ActionCreator<AnyAction>;
 }
 
 interface IPayeeContainerState {
@@ -71,7 +72,7 @@ class PayeesContainer extends React.Component<
   };
 
   deletePayee = (payeeId: number) => {
-    // const filtered = this.props.payees.filter(item => item.id !== payeeId);
+    this.props.deletePayeeAction(payeeId);
   };
 
   openForm = (): void => {
@@ -136,6 +137,7 @@ const mapStateToProps = (state: any) => {
 };
 
 const dispatchToProps = {
+  deletePayeeAction,
   createPayeeAction,
 };
 

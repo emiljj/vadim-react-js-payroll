@@ -1,5 +1,6 @@
 import { combineReducers, AnyAction } from 'redux';
 import { CREATE_PAYEE } from './constants';
+import { DELETE_PAYEE } from './constants';
 
 const initialState = [
   {
@@ -24,6 +25,8 @@ const initialState = [
 const payees = (state = initialState, action: AnyAction) => {
   if (action.type === CREATE_PAYEE) {
     return [...state, action.payload];
+  } else if (action.type === DELETE_PAYEE) {
+    return state.filter(item => item.id !== action.payload);
   }
   return state;
 };
