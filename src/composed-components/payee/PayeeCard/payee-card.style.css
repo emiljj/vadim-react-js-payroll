@@ -61,10 +61,22 @@
   border-top: 20px solid rgb(189, 185, 182);
   clear: both;
 }
+.button-active {
+  position: absolute;
+  margin-left: 70%;
+}
+.button-deactive {
+  position: absolute;
+  margin-left: 70%;
+}
 
+.button-active {
+  position: absolute;
+  margin-left: 70%;
+}
 .button-delete,
 .button-seeMore {
-  margin-left: 50px;
+  margin-left: 8%;
   margin-bottom: 5px;
 }
 

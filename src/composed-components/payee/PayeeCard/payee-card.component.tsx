@@ -9,6 +9,8 @@ interface IPayeeCardProps {
   handleSeeMoreBtnClick: () => void;
   handleSeeLessBtnClick: () => void;
   handleDeleteBtnClick: () => void;
+  handleActiveBtnClick: () => void;
+  handleDeactiveBtnClick: () => void;
 }
 
 const getRolesList = (payee: IPayee): string => {
@@ -24,7 +26,11 @@ const PayeeCard = (props: IPayeeCardProps) => {
     handleSeeMoreBtnClick,
     handleSeeLessBtnClick,
     handleDeleteBtnClick,
+    handleActiveBtnClick,
+    handleDeactiveBtnClick,
   } = props;
+
+  const active = payee.active;
 
   return (
     <div className="payee-card">
@@ -41,6 +47,16 @@ const PayeeCard = (props: IPayeeCardProps) => {
           </div>
         </div>
       </div>
+      {!active && (
+        <button className="button-active" onClick={handleActiveBtnClick}>
+          Activate
+        </button>
+      )}
+      {active && (
+        <button className="button-deactive" onClick={handleDeactiveBtnClick}>
+          Deactivate
+        </button>
+      )}
       <button className="button-delete" onClick={handleDeleteBtnClick}>
         Delete
       </button>

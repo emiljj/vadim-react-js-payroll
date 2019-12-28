@@ -1,2 +1,4 @@
 export const CREATE_PAYEE = 'CREATE_PAYEE';
 export const DELETE_PAYEE = 'DELETE_PAYEE';
+export const ACTIVE_PAYEE = 'ACTIVE_PAYEE';
+export const DEACTIVE_PAYEE = 'DEACTIVE_PAYEE';

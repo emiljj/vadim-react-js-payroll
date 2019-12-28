@@ -3,7 +3,12 @@ import { connect } from 'react-redux';
 import { IPayee } from '../../core/payee/payee.types';
 import PayeeCard from '../../composed-components/payee/PayeeCard/payee-card.component';
 import PayeeForm from '../../composed-components/payee/PayeeForm/payee-form.component';
-import { createPayeeAction, deletePayeeAction } from '../../core/actions';
+import {
+  createPayeeAction,
+  deletePayeeAction,
+  activePayeeAction,
+  deactivePayeeAction,
+} from '../../core/actions';
 
 import './payees.container.style.css';
 import PayeePageHeader from './PayeePageHeader';
@@ -13,12 +18,15 @@ interface IPayeeContainerProps {
   payees: IPayee[];
   createPayeeAction: ActionCreator<AnyAction>;
   deletePayeeAction: ActionCreator<AnyAction>;
+  activePayeeAction: ActionCreator<AnyAction>;
+  deactivePayeeAction: ActionCreator<AnyAction>;
 }
 
 interface IPayeeContainerState {
   activeId: number | null;
   formOpened: boolean;
-  formClosed: boolean;
+  activate: boolean;
+  deactivate: boolean;
 }
 
 class PayeesContainer extends React.Component<
@@ -29,6 +37,8 @@ class PayeesContainer extends React.Component<
     activeId: null,
     formOpened: false,
     formClosed: true,
+    activate: false,
+    deactivate: true,
   };
 
   calculatePayeesTotalSalary = (): number => {
@@ -75,12 +85,28 @@ class PayeesContainer extends React.Component<
     this.props.deletePayeeAction(payeeId);
   };
 
+  activePayee = (payeeId: number) => {
+    this.props.activePayeeAction(payeeId);
+  };
+
+  deactivePayee = (payeeId: number) => {
+    this.props.deactivePayeeAction(payeeId);
+  };
+
   openForm = (): void => {
     this.setState({ formOpened: true });
   };
 
   closeForm = (): void => {
     this.setState({ formOpened: false });
+  };
+
+  active = (): void => {
+    this.setState({ activate: true });
+  };
+
+  deactive = (): void => {
+    this.setState({ activate: false });
   };
 
   createPayee = (data: any) => {
@@ -117,6 +143,8 @@ class PayeesContainer extends React.Component<
                   handleSeeMoreBtnClick={() => this.setOpenedId(payee.id)}
                   handleSeeLessBtnClick={() => this.setOpenedId(null)}
                   handleDeleteBtnClick={() => this.deletePayee(payee.id)}
+                  handleActiveBtnClick={() => this.activePayee(payee.id)}
+                  handleDeactiveBtnClick={() => this.deactivePayee(payee.id)}
                 />
               );
             })}
@@ -140,6 +168,8 @@ const mapStateToProps = (state: any) => {
 const dispatchToProps = {
   deletePayeeAction,
   createPayeeAction,
+  activePayeeAction,
+  deactivePayeeAction,
 };
 
 export default connect(mapStateToProps, dispatchToProps)(PayeesContainer);

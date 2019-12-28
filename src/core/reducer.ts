@@ -1,11 +1,13 @@
 import { combineReducers, AnyAction } from 'redux';
 import { CREATE_PAYEE } from './constants';
 import { DELETE_PAYEE } from './constants';
+import { ACTIVE_PAYEE } from './constants';
+import { DEACTIVE_PAYEE } from './constants';
 
 const initialState = [
   {
     id: 2,
-    firstName: 'Emilio',
+    firstName: 'Emil',
     lastName: 'Kulmuhametov',
     jobTitle: 'HOJSD',
     email: 'emilkul@gmail.com',
@@ -28,6 +30,16 @@ const payees = (state = initialState, action: AnyAction) => {
     return [...state, action.payload];
   } else if (action.type === DELETE_PAYEE) {
     return state.filter(item => item.id !== action.payload);
+  } else if (action.type === ACTIVE_PAYEE) {
+    const list = [...state];
+    const index = list.findIndex(element => element.id === action.payload);
+    list.splice(index, 1, Object.assign(state[index], { active: true }));
+    return list;
+  } else if (action.type === DEACTIVE_PAYEE) {
+    const list = [...state];
+    const index = list.findIndex(element => element.id === action.payload);
+    list.splice(index, 1, Object.assign(state[index], { active: false }));
+    return list;
   }
   return state;
 };
