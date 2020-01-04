@@ -119,6 +119,10 @@ class PayeesContainer extends React.Component<
     this.closeForm();
   };
 
+  handlePayClick = () => {
+    // TODO:
+  };
+
   render() {
     const { activeId, formOpened } = this.state;
     const { payees } = this.props;
@@ -160,6 +164,7 @@ class PayeesContainer extends React.Component<
 }
 
 const mapStateToProps = (state: any) => {
+  console.log({ state });
   return {
     payees: state.payees,
   };

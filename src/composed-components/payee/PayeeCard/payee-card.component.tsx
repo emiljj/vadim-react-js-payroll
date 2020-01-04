@@ -45,6 +45,7 @@ const PayeeCard = (props: IPayeeCardProps) => {
           <div className="job-status__title">
             <h4>{payee.jobTitle}</h4>
           </div>
+          <div>ACTIVE</div>
         </div>
       </div>
       {!active && (
