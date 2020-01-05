@@ -129,6 +129,7 @@ class PayeesContainer extends React.Component<
     return (
       <div className="payee-container">
         <PayeePageHeader
+          companyBalance={5000000}
           payeesCount={payees.length}
           totalSalary={this.calculatePayeesTotalSalary()}
           adminNames={this.getUsersAdminsListNames()}
@@ -167,6 +168,7 @@ const mapStateToProps = (state: any) => {
   console.log({ state });
   return {
     payees: state.payees,
+    companyBalance: state.companyBalance,
   };
 };
 

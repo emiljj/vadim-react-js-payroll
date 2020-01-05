@@ -27,7 +27,10 @@ const initialState = [
 ];
 
 const setActive = (list: IPayee[], id: number, active: boolean) => {
-  return [];
+  const newlist = [...list];
+  const index = list.findIndex(element => element.id === id);
+  list.splice(index, 1, Object.assign(newlist[index], { active }));
+  return newlist;
 };
 
 const payees = (state = initialState, action: AnyAction) => {
@@ -36,18 +39,10 @@ const payees = (state = initialState, action: AnyAction) => {
   } else if (action.type === DELETE_PAYEE) {
     return state.filter(item => item.id !== action.payload);
   } else if (action.type === ACTIVE_PAYEE) {
-    // TODO: Replace with setActive function
-    const list = [...state];
-    const index = list.findIndex(element => element.id === action.payload);
-    list.splice(index, 1, Object.assign(state[index], { active: true }));
-    // ***** //
+    const list = setActive(state, action.payload, true);
     return list;
   } else if (action.type === DEACTIVATE_PAYEE) {
-    // TODO: Replace with setActive function
-    const list = [...state];
-    const index = list.findIndex(element => element.id === action.payload);
-    list.splice(index, 1, Object.assign(state[index], { active: false }));
-    // ***** //
+    const list = setActive(state, action.payload, false);
     return list;
   }
   return state;

@@ -30,6 +30,10 @@
   padding-bottom: 1px;
   line-height: 10px;
 }
+.payee-card_marker {
+  font-weight: 900;
+  padding-bottom: 3px;
+}
 
 .payee-card__information-content {
   overflow: auto;
@@ -65,15 +69,12 @@
   position: absolute;
   margin-left: 70%;
 }
+
 .button-deactive {
   position: absolute;
   margin-left: 70%;
 }
 
-.button-active {
-  position: absolute;
-  margin-left: 70%;
-}
 .button-delete,
 .button-seeMore {
   margin-left: 8%;

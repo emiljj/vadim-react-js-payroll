@@ -45,7 +45,11 @@ const PayeeCard = (props: IPayeeCardProps) => {
           <div className="job-status__title">
             <h4>{payee.jobTitle}</h4>
           </div>
-          <div>ACTIVE</div>
+          <div
+            className="payee-card_marker"
+            style={{ color: active ? 'green' : 'red' }}>
+            {active ? <p>Active</p> : <p>Not-Active</p>}
+          </div>
         </div>
       </div>
       {!active && (

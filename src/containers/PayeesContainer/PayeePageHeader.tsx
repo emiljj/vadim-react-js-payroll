@@ -2,6 +2,7 @@ import React from 'react';
 import './payees.container.style.css';
 
 interface IPayeePageHeaderProps {
+  companyBalance: number;
   payeesCount: number;
   totalSalary: number;
   adminNames: string;
@@ -11,6 +12,7 @@ interface IPayeePageHeaderProps {
 
 const PayeePageHeader = (props: IPayeePageHeaderProps) => {
   const {
+    companyBalance,
     payeesCount,
     totalSalary,
     adminNames,
@@ -20,7 +22,7 @@ const PayeePageHeader = (props: IPayeePageHeaderProps) => {
   return (
     <div className="payee-container__header">
       <div>
-        <p>Company balance: {100000} </p>
+        <p>Company balance: {companyBalance} </p>
       </div>
       <div>
         <p>Payees count: {payeesCount} </p>
