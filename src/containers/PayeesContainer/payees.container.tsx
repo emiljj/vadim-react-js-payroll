@@ -8,6 +8,7 @@ import {
   deletePayeeAction,
   activePayeeAction,
   deactivePayeeAction,
+  payPayeeAction,
 } from '../../core/actions';
 
 import './payees.container.style.css';
@@ -15,11 +16,13 @@ import PayeePageHeader from './PayeePageHeader';
 import { ActionCreator, AnyAction } from 'redux';
 
 interface IPayeeContainerProps {
+  companyBalance: number;
   payees: IPayee[];
   createPayeeAction: ActionCreator<AnyAction>;
   deletePayeeAction: ActionCreator<AnyAction>;
   activePayeeAction: ActionCreator<AnyAction>;
   deactivePayeeAction: ActionCreator<AnyAction>;
+  payPayeeAction: ActionCreator<AnyAction>;
 }
 
 interface IPayeeContainerState {
@@ -27,6 +30,7 @@ interface IPayeeContainerState {
   formOpened: boolean;
   activate: boolean;
   deactivate: boolean;
+  toPay: boolean;
 }
 
 class PayeesContainer extends React.Component<
@@ -39,6 +43,7 @@ class PayeesContainer extends React.Component<
     formClosed: true,
     activate: false,
     deactivate: true,
+    toPay: false,
   };
 
   calculatePayeesTotalSalary = (): number => {
@@ -119,22 +124,31 @@ class PayeesContainer extends React.Component<
     this.closeForm();
   };
 
-  handlePayClick = () => {
-    // TODO:
+  handlePayClick = (): number => {
+    const { payees } = this.props;
+    const totalSalary = payees.reduce(
+      (acc, item) => acc + Number(item.salary),
+      0
+    );
+    this.props.payPayeeAction(totalSalary);
+    this.setState({ toPay: true });
+    return totalSalary;
   };
 
   render() {
     const { activeId, formOpened } = this.state;
-    const { payees } = this.props;
+    const { payees, companyBalance } = this.props;
+    console.log('props', this.props);
     return (
       <div className="payee-container">
         <PayeePageHeader
-          companyBalance={5000000}
+          companyBalance={companyBalance}
           payeesCount={payees.length}
           totalSalary={this.calculatePayeesTotalSalary()}
           adminNames={this.getUsersAdminsListNames()}
           highestSalary={this.findHighestSalary()}
           onAddButtonClick={this.openForm}
+          handlePayClick={() => this.handlePayClick()}
         />
         {!formOpened ? (
           <div className="payee-container__payees-list">
@@ -177,6 +191,7 @@ const dispatchToProps = {
   createPayeeAction,
   activePayeeAction,
   deactivePayeeAction,
+  payPayeeAction,
 };
 
 export default connect(mapStateToProps, dispatchToProps)(PayeesContainer);

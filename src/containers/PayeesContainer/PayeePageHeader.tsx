@@ -8,6 +8,7 @@ interface IPayeePageHeaderProps {
   adminNames: string;
   highestSalary: number;
   onAddButtonClick: () => void;
+  handlePayClick: () => void;
 }
 
 const PayeePageHeader = (props: IPayeePageHeaderProps) => {
@@ -18,10 +19,14 @@ const PayeePageHeader = (props: IPayeePageHeaderProps) => {
     adminNames,
     highestSalary,
     onAddButtonClick,
+    handlePayClick,
   } = props;
   return (
     <div className="payee-container__header">
       <div>
+        <button className="pay-button" onClick={handlePayClick}>
+          PAY
+        </button>
         <p>Company balance: {companyBalance} </p>
       </div>
       <div>

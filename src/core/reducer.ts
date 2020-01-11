@@ -49,6 +49,11 @@ const payees = (state = initialState, action: AnyAction) => {
 };
 
 const companyBalance = (state = 500000, action: AnyAction) => {
+  if (action.type === 'PAY_PAYEE') {
+    let balance = state;
+    balance = balance - action.payload;
+    return balance;
+  }
   return state;
 };
 
