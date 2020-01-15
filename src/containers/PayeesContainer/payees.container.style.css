@@ -96,3 +96,24 @@
 .pay-button:focus {
   outline: none;
 }
+
+.close-message {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin: 1px;
+}
+
+.close-button {
+  display: flex;
+}
+
+.close-payees,
+.close-success,
+.close-money {
+  color: red;
+  margin-left: 5px;
+  cursor: pointer;
+}

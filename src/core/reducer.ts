@@ -3,6 +3,7 @@ import { CREATE_PAYEE } from './constants';
 import { DELETE_PAYEE } from './constants';
 import { ACTIVE_PAYEE } from './constants';
 import { DEACTIVATE_PAYEE } from './constants';
+import { PAY_PAYEE } from './constants';
 import { IPayee } from './payee/payee.types';
 
 const initialState = [
@@ -27,10 +28,10 @@ const initialState = [
 ];
 
 const setActive = (list: IPayee[], id: number, active: boolean) => {
-  const newlist = [...list];
+  const newList = [...list];
   const index = list.findIndex(element => element.id === id);
-  list.splice(index, 1, Object.assign(newlist[index], { active }));
-  return newlist;
+  list.splice(index, 1, Object.assign(newList[index], { active }));
+  return newList;
 };
 
 const payees = (state = initialState, action: AnyAction) => {
@@ -48,8 +49,8 @@ const payees = (state = initialState, action: AnyAction) => {
   return state;
 };
 
-const companyBalance = (state = 500000, action: AnyAction) => {
-  if (action.type === 'PAY_PAYEE') {
+const companyBalance = (state = 2500, action: AnyAction) => {
+  if (action.type === PAY_PAYEE) {
     let balance = state;
     balance = balance - action.payload;
     return balance;

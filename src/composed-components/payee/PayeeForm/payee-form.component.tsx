@@ -195,7 +195,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, IPayeeFormState> {
           </div>
         </div>
         <button
-          className="payee-form-cansel"
+          className="payee-form-cancel"
           onClick={() => onClose(this.state)}>
           Cancel
         </button>

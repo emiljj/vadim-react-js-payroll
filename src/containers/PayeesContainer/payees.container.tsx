@@ -7,12 +7,13 @@ import {
   createPayeeAction,
   deletePayeeAction,
   activePayeeAction,
-  deactivePayeeAction,
+  deactivatePayeeAction,
   payPayeeAction,
 } from '../../core/actions';
 
 import './payees.container.style.css';
 import PayeePageHeader from './PayeePageHeader';
+import Alert from '../../components/alert';
 import { ActionCreator, AnyAction } from 'redux';
 
 interface IPayeeContainerProps {
@@ -21,7 +22,7 @@ interface IPayeeContainerProps {
   createPayeeAction: ActionCreator<AnyAction>;
   deletePayeeAction: ActionCreator<AnyAction>;
   activePayeeAction: ActionCreator<AnyAction>;
-  deactivePayeeAction: ActionCreator<AnyAction>;
+  deactivatePayeeAction: ActionCreator<AnyAction>;
   payPayeeAction: ActionCreator<AnyAction>;
 }
 
@@ -30,7 +31,9 @@ interface IPayeeContainerState {
   formOpened: boolean;
   activate: boolean;
   deactivate: boolean;
-  toPay: boolean;
+  showSuccessMessage: boolean;
+  showNotPayeesMessage: boolean;
+  showBalanceMessage: boolean;
 }
 
 class PayeesContainer extends React.Component<
@@ -43,7 +46,9 @@ class PayeesContainer extends React.Component<
     formClosed: true,
     activate: false,
     deactivate: true,
-    toPay: false,
+    showSuccessMessage: false,
+    showNotPayeesMessage: false,
+    showBalanceMessage: false,
   };
 
   calculatePayeesTotalSalary = (): number => {
@@ -94,8 +99,8 @@ class PayeesContainer extends React.Component<
     this.props.activePayeeAction(payeeId);
   };
 
-  deactivePayee = (payeeId: number) => {
-    this.props.deactivePayeeAction(payeeId);
+  deactivatePayee = (payeeId: number) => {
+    this.props.deactivatePayeeAction(payeeId);
   };
 
   openForm = (): void => {
@@ -106,11 +111,19 @@ class PayeesContainer extends React.Component<
     this.setState({ formOpened: false });
   };
 
+  payeesMassage = (): void => {
+    this.setState({ showNotPayeesMessage: false });
+  };
+
+  balanceMassage = (): void => {
+    this.setState({ showBalanceMessage: false });
+  };
+
   active = (): void => {
     this.setState({ activate: true });
   };
 
-  deactive = (): void => {
+  deactivate = (): void => {
     this.setState({ activate: false });
   };
 
@@ -124,19 +137,32 @@ class PayeesContainer extends React.Component<
     this.closeForm();
   };
 
-  handlePayClick = (): number => {
-    const { payees } = this.props;
-    const totalSalary = payees.reduce(
+  handlePayClick = () => {
+    const { payees, companyBalance } = this.props;
+    const activePayee = payees.filter(item => item.active === true);
+    const totalSalary = activePayee.reduce(
       (acc, item) => acc + Number(item.salary),
       0
     );
-    this.props.payPayeeAction(totalSalary);
-    this.setState({ toPay: true });
-    return totalSalary;
+
+    if (totalSalary > companyBalance) {
+      return this.setState({ showBalanceMessage: true });
+    } else if (!totalSalary) {
+      return this.setState({ showNotPayeesMessage: true });
+    } else if (totalSalary) {
+      this.setState({ showSuccessMessage: true });
+      return this.props.payPayeeAction(totalSalary);
+    }
   };
 
   render() {
-    const { activeId, formOpened } = this.state;
+    const {
+      activeId,
+      formOpened,
+      showSuccessMessage,
+      showNotPayeesMessage,
+      showBalanceMessage,
+    } = this.state;
     const { payees, companyBalance } = this.props;
     console.log('props', this.props);
     return (
@@ -150,6 +176,31 @@ class PayeesContainer extends React.Component<
           onAddButtonClick={this.openForm}
           handlePayClick={() => this.handlePayClick()}
         />
+
+        {showSuccessMessage && (
+          <div className="close-button">
+            <p>Payment was successful!</p>
+            <div className="close-success" role="button">
+              x
+            </div>
+          </div>
+        )}
+        {showNotPayeesMessage && (
+          <div className="close-button">
+            <p>The are not payees to pay!</p>
+            <div className="close-payees" role="button">
+              x
+            </div>
+          </div>
+        )}
+        {showBalanceMessage && (
+          <div className="close-button">
+            <p>Not enough money!</p>
+            <div className="close-money" role="button">
+              x
+            </div>
+          </div>
+        )}
         {!formOpened ? (
           <div className="payee-container__payees-list">
             {payees.map((payee: IPayee) => {
@@ -163,7 +214,9 @@ class PayeesContainer extends React.Component<
                   handleSeeLessBtnClick={() => this.setOpenedId(null)}
                   handleDeleteBtnClick={() => this.deletePayee(payee.id)}
                   handleActiveBtnClick={() => this.activePayee(payee.id)}
-                  handleDeactiveBtnClick={() => this.deactivePayee(payee.id)}
+                  handleDeactivateBtnClick={() =>
+                    this.deactivatePayee(payee.id)
+                  }
                 />
               );
             })}
@@ -190,7 +243,7 @@ const dispatchToProps = {
   deletePayeeAction,
   createPayeeAction,
   activePayeeAction,
-  deactivePayeeAction,
+  deactivatePayeeAction,
   payPayeeAction,
 };
 

@@ -19,7 +19,7 @@ export const activePayeeAction = (payload: any) => ({
   payload,
 });
 
-export const deactivePayeeAction = (payload: any) => ({
+export const deactivatePayeeAction = (payload: any) => ({
   type: DEACTIVATE_PAYEE,
   payload,
 });
