@@ -112,11 +112,27 @@ class PayeesContainer extends React.Component<
   };
 
   payeesMassage = (): void => {
+    this.setState({ showNotPayeesMessage: true });
+  };
+
+  closePayeesMassage = (): void => {
     this.setState({ showNotPayeesMessage: false });
   };
 
   balanceMassage = (): void => {
+    this.setState({ showBalanceMessage: true });
+  };
+
+  closeBalanceMassage = (): void => {
     this.setState({ showBalanceMessage: false });
+  };
+
+  successMassage = (): void => {
+    this.setState({ showSuccessMessage: true });
+  };
+
+  closeSuccessMassage = (): void => {
+    this.setState({ showSuccessMessage: false });
   };
 
   active = (): void => {
@@ -179,26 +195,35 @@ class PayeesContainer extends React.Component<
 
         {showSuccessMessage && (
           <div className="close-button">
-            <p>Payment was successful!</p>
-            <div className="close-success" role="button">
-              x
-            </div>
+            <p>
+              <Alert
+                message={'SUCCESS ALERT:Payment was successful!'}
+                onClose={this.closeSuccessMassage}
+                mod={'success'}
+              />
+            </p>
           </div>
         )}
         {showNotPayeesMessage && (
           <div className="close-button">
-            <p>The are not payees to pay!</p>
-            <div className="close-payees" role="button">
-              x
-            </div>
+            <p>
+              <Alert
+                message={'WARNING ALERT:The are not payees to pay!'}
+                onClose={this.closePayeesMassage}
+                mod={'warning'}
+              />
+            </p>
           </div>
         )}
         {showBalanceMessage && (
           <div className="close-button">
-            <p>Not enough money!</p>
-            <div className="close-money" role="button">
-              x
-            </div>
+            <p>
+              <Alert
+                message={'DANGER ALERT:Not enough money!'}
+                onClose={this.closeBalanceMassage}
+                mod={'danger'}
+              />
+            </p>
           </div>
         )}
         {!formOpened ? (

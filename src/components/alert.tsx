@@ -9,7 +9,16 @@ interface IAlertProps {
 
 const Alert = (props: IAlertProps) => {
   const { mod, onClose, message } = props;
-  return <div>{message}</div>;
+  return (
+    <div className={`alert ${mod}`}>
+      <div>
+        <p>{message}</p>
+      </div>
+      <div className="close-massage" onClick={onClose} role="button">
+        x
+      </div>
+    </div>
+  );
 };
 
 export default Alert;

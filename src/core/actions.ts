@@ -9,22 +9,22 @@ export const createPayeeAction = (payload: any) => ({
   payload,
 });
 
-export const deletePayeeAction = (payload: any) => ({
+export const deletePayeeAction = (payload: number) => ({
   type: DELETE_PAYEE,
   payload,
 });
 
-export const activePayeeAction = (payload: any) => ({
+export const activePayeeAction = (payload: boolean) => ({
   type: ACTIVE_PAYEE,
   payload,
 });
 
-export const deactivatePayeeAction = (payload: any) => ({
+export const deactivatePayeeAction = (payload: boolean) => ({
   type: DEACTIVATE_PAYEE,
   payload,
 });
 
-export const payPayeeAction = (payload: any) => ({
+export const payPayeeAction = (payload: number) => ({
   type: PAY_PAYEE,
   payload,
 });
