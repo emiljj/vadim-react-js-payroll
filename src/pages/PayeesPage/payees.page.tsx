@@ -11,12 +11,13 @@ import {
   payPayeeAction,
 } from '../../core/actions';
 
-import './payees.container.style.css';
 import PayeePageHeader from './PayeePageHeader';
 import Alert from '../../components/alert';
 import { ActionCreator, AnyAction } from 'redux';
 
-interface IPayeeContainerProps {
+import './payees.page.style.css';
+
+interface IPayeesPageProps {
   companyBalance: number;
   payees: IPayee[];
   createPayeeAction: ActionCreator<AnyAction>;
@@ -26,7 +27,7 @@ interface IPayeeContainerProps {
   payPayeeAction: ActionCreator<AnyAction>;
 }
 
-interface IPayeeContainerState {
+interface IPayeesPageState {
   activeId: number | null;
   formOpened: boolean;
   activate: boolean;
@@ -36,10 +37,7 @@ interface IPayeeContainerState {
   showBalanceMessage: boolean;
 }
 
-class PayeesContainer extends React.Component<
-  IPayeeContainerProps,
-  IPayeeContainerState
-> {
+class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
   state = {
     activeId: null,
     formOpened: false,
@@ -180,9 +178,8 @@ class PayeesContainer extends React.Component<
       showBalanceMessage,
     } = this.state;
     const { payees, companyBalance } = this.props;
-    console.log('props', this.props);
     return (
-      <div className="payee-container">
+      <div className="payee-page">
         <PayeePageHeader
           companyBalance={companyBalance}
           payeesCount={payees.length}
@@ -227,7 +224,7 @@ class PayeesContainer extends React.Component<
           </div>
         )}
         {!formOpened ? (
-          <div className="payee-container__payees-list">
+          <div className="payee-page__payees-list">
             {payees.map((payee: IPayee) => {
               const isOpened: boolean = activeId === payee.id;
               return (
@@ -257,7 +254,6 @@ class PayeesContainer extends React.Component<
 }
 
 const mapStateToProps = (state: any) => {
-  console.log({ state });
   return {
     payees: state.payees,
     companyBalance: state.companyBalance,
@@ -272,4 +268,4 @@ const dispatchToProps = {
   payPayeeAction,
 };
 
-export default connect(mapStateToProps, dispatchToProps)(PayeesContainer);
+export default connect(mapStateToProps, dispatchToProps)(PayeesPage);

@@ -1,4 +1,4 @@
-.payee-container {
+.payee-page {
   margin: 0 auto;
   width: 98%;
   background-color: #fff;
@@ -7,7 +7,7 @@
   margin-top: 20px;
 }
 
-.payee-container__payees-list {
+.payee-page__payees-list {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
@@ -15,7 +15,7 @@
   justify-content: space-around;
 }
 
-.payee-container__header {
+.payee-page__header {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;

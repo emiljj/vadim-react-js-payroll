@@ -1,5 +1,5 @@
 import React from 'react';
-import './payees.container.style.css';
+import './payees.page.style.css';
 
 interface IPayeePageHeaderProps {
   companyBalance: number;
@@ -22,7 +22,7 @@ const PayeePageHeader = (props: IPayeePageHeaderProps) => {
     handlePayClick,
   } = props;
   return (
-    <div className="payee-container__header">
+    <div className="payee-page__header">
       <div>
         <button className="pay-button" onClick={handlePayClick}>
           PAY
