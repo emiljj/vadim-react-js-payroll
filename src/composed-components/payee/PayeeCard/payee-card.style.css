@@ -65,21 +65,6 @@
   border-top: 20px solid rgb(189, 185, 182);
   clear: both;
 }
-.button-active {
-  position: absolute;
-  margin-left: 70%;
-}
-
-.button-deactivate {
-  position: absolute;
-  margin-left: 70%;
-}
-
-.button-delete,
-.button-seeMore {
-  margin-left: 8%;
-  margin-bottom: 5px;
-}
 
 .add-button {
   background: linear-gradient(to bottom, #ffffff, #e6e6e6) #f5f5f5 repeat-x;
@@ -155,4 +140,11 @@
 
 .add-button:focus {
   outline: none;
+}
+
+.payee-card__buttons-bar {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 10px;
 }

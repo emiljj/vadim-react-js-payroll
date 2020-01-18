@@ -52,26 +52,15 @@ const PayeeCard = (props: IPayeeCardProps) => {
           </div>
         </div>
       </div>
-      {!active && (
-        <button className="button-active" onClick={handleActiveBtnClick}>
-          Activate
-        </button>
-      )}
-      {active && (
-        <button
-          className="button-deactivate"
-          onClick={handleDeactivateBtnClick}>
-          Deactivate
-        </button>
-      )}
-      <button className="button-delete" onClick={handleDeleteBtnClick}>
-        Delete
-      </button>
-      {!isOpened && (
-        <button className="button-seeMore" onClick={handleSeeMoreBtnClick}>
-          See more
-        </button>
-      )}
+      <a href={`/payee/${payee.id}`}>View profile</a>
+      <div className="payee-card__buttons-bar">
+        {!isOpened && <button onClick={handleSeeMoreBtnClick}>See more</button>}
+        {!active && <button onClick={handleActiveBtnClick}>Activate</button>}
+        {active && (
+          <button onClick={handleDeactivateBtnClick}>Deactivate</button>
+        )}
+        <button onClick={handleDeleteBtnClick}>Delete</button>
+      </div>
       {isOpened && (
         <div className="payee-card__information">
           <div className="payee-card__triangle" />

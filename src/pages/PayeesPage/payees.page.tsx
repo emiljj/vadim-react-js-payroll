@@ -12,7 +12,7 @@ import {
 } from '../../core/actions';
 
 import PayeePageHeader from './PayeePageHeader';
-import Alert from '../../components/alert';
+import Alert from '../../components/Alert/alert';
 import { ActionCreator, AnyAction } from 'redux';
 
 import './payees.page.style.css';
@@ -194,7 +194,7 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
           <div className="close-button">
             <p>
               <Alert
-                message={'SUCCESS ALERT:Payment was successful!'}
+                message={'SUCCESS ALERT: Payment was successful!'}
                 onClose={this.closeSuccessMassage}
                 mod={'success'}
               />

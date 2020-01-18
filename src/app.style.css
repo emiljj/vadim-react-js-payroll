@@ -1,16 +1,19 @@
 .header {
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  margin: 10px;
   font-size: 25px;
   background-color: rgb(37, 126, 247);
-  width: auto;
   height: 50px;
+  padding-left: 21px;
 }
 
 .header_link {
-  font-family: Georgia, 'Times New Roman', Times, serif;
   text-decoration: none;
   color: white;
+}
+
+.header__links {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
 }
