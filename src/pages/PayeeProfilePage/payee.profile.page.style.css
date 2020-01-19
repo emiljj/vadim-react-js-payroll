@@ -16,7 +16,7 @@
   align-items: center;
 }
 
-.profile_foto {
+.profile_photo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +26,7 @@
   height: 200px;
 }
 
-.profile_info_name {
+.profile__name {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,7 +84,7 @@
   height: auto;
 }
 
-.payee-information_left_column {
+.payee-information__left-column {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -95,7 +95,7 @@
   height: auto;
 }
 
-.payee-information_right_column {
+.payee-information__right-column {
   display: flex;
   justify-content: center;
   align-items: flex-start;
