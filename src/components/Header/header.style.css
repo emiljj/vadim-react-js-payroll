@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  background-color: rgb(37, 126, 247);
+  height: 50px;
+  padding-left: 21px;
+}
+
+.header_link,
+.header_link_payroll {
+  text-decoration: none;
+  color: white;
+}
+
+.header__links {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.header_link_payroll {
+  font-weight: bold;
+}

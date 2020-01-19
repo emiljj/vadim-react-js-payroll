@@ -66,6 +66,18 @@
   clear: both;
 }
 
+.payee-card__link {
+  color: black;
+  text-decoration: none;
+}
+
+.payee-card__link-bar {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+
 .add-button {
   background: linear-gradient(to bottom, #ffffff, #e6e6e6) #f5f5f5 repeat-x;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #b3b3b3;

@@ -52,7 +52,12 @@ const PayeeCard = (props: IPayeeCardProps) => {
           </div>
         </div>
       </div>
-      <a href={`/payee/${payee.id}`}>View profile</a>
+      <div className="payee-card__link-bar">
+        <a className="payee-card__link" href={`/payee/${payee.id}`}>
+          View profile
+        </a>
+      </div>
+
       <div className="payee-card__buttons-bar">
         {!isOpened && <button onClick={handleSeeMoreBtnClick}>See more</button>}
         {!active && <button onClick={handleActiveBtnClick}>Activate</button>}
