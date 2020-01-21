@@ -46,15 +46,16 @@ const payees = (state = initialState, action: AnyAction) => {
     const list = setActive(state, action.payload, false);
     return list;
   } else if (action.type === UPDATE_PAYEE) {
+    const list = [...state];
     const payload = action.payload;
     console.log(payload);
-    const payeeIndex = state.findIndex(
-      element => element.id === payload.payeeId
+    const payeeIndex = list.findIndex(
+      element => +element.id === +payload.payeeId
     );
-    const payeeData = state[payeeIndex];
+    const payeeData = list[payeeIndex];
     const updatedData = Object.assign(payeeData, payload.data);
-    state[payeeIndex] = updatedData;
-    return state;
+    list[payeeIndex] = updatedData;
+    return list;
   }
   return state;
 };

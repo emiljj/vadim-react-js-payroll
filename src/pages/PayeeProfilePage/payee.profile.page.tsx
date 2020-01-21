@@ -55,6 +55,7 @@ const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
           <h2>
             {payee.firstName} {payee.lastName}
           </h2>
+          <h4>{payee.jobTitle}</h4>
           <h4>HEAD OF THE DEPARTMENT</h4>
         </div>
         <div className="profile_info_massage">
@@ -104,7 +105,7 @@ const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
         </div>
       ) : (
         <div className="payee-information__form">
-          <div className="payee-form">
+          <div className="payees_form">
             <PayeeForm
               initialValues={{
                 [payeeFormFields.firstName]: payee.firstName,

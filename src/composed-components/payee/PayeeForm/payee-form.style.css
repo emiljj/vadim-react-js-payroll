@@ -1,20 +1,22 @@
 .payee-form {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  border: 1px solid black;
   width: 40%;
-  height: auto;
-  margin: 5px;
-  padding: 10px;
+  line-height: 18px;
+  height: 370px;
+  margin: 10px;
   border-radius: 15px;
 }
 
 .columnLeft {
   width: 40%;
-  margin-right: 25px;
+  margin-left: 25px;
 }
 
 .columnRight {
+  margin-left: 25px;
   width: 40%;
 }
 

@@ -29,7 +29,7 @@
 .profile__name {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   line-height: 5px;
   width: 30%;
   height: 80%;
@@ -88,7 +88,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-left: 10px;
   flex-direction: column;
   line-height: 5px;
   width: 50%;
@@ -100,7 +99,6 @@
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  padding-left: 10px;
   line-height: 5px;
   width: 50%;
   height: auto;
@@ -108,18 +106,20 @@
 
 .payee-information__form {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
   width: 55%;
-  height: 300px;
+  height: 400px;
 }
 
-.payee-form {
+.payees_form {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 85%;
-  height: 320px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 99%;
+  height: auto;
   line-height: 20px;
 }
 
