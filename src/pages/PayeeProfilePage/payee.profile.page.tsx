@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { IPayee } from '../../core/payee/payee.types';
+import { updatePayeeAction } from '../../core/actions';
+import { ActionCreator, AnyAction } from 'redux';
 
 import './payee.profile.page.style.css';
 import PayeeForm, {
@@ -19,7 +21,9 @@ const getSelector = (payeeId: string) => {
 };
 
 interface IPayeeProfilePageProps
-  extends RouteComponentProps<{ payeeId: string }> {}
+  extends RouteComponentProps<{ payeeId: string }> {
+  updatePayeeAction: ActionCreator<AnyAction>;
+}
 
 const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
   const { payeeId } = props.match.params;
@@ -33,8 +37,8 @@ const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
   }
 
   const onSave = (data: any) => {
-    console.log({ data });
-    // dispatch your action with data : dispatch(updatePayeeAction({ id, data }))
+    dispatch(updatePayeeAction({ payeeId, data }));
+    setFormOpened(false);
   };
 
   return (
@@ -57,7 +61,6 @@ const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
           <div className="massage">
             <p>Send massage:{payee.email}</p>
           </div>
-          <button onClick={() => setFormOpened(true)}>Edit</button>
         </div>
       </div>
       <div className="profile-skills">
@@ -78,6 +81,11 @@ const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
         <div className="payee-information">
           <div className="payee-information__left-column">
             <div>
+              <div className="edit-button">
+                <div>
+                  <button onClick={() => setFormOpened(true)}>&#9998;</button>
+                </div>
+              </div>
               <h3>User information</h3>
             </div>
             <p>County: {payee.country}</p>
@@ -95,25 +103,27 @@ const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
           </div>
         </div>
       ) : (
-        <div>
-          <PayeeForm
-            initialValues={{
-              [payeeFormFields.firstName]: payee.firstName,
-              [payeeFormFields.lastName]: '',
-              [payeeFormFields.jobTitle]: '',
-              [payeeFormFields.email]: '',
-              [payeeFormFields.address]: '',
-              [payeeFormFields.age]: 18,
-              [payeeFormFields.withHoldingTax]: 0,
-              [payeeFormFields.salary]: 0,
-              [payeeFormFields.country]: '',
-              [payeeFormFields.city]: '',
-              [payeeFormFields.socialProfileLink]: '',
-              [payeeFormFields.cardNumber]: 0,
-            }}
-            onClose={() => {}}
-            onSave={onSave}
-          />
+        <div className="payee-information__form">
+          <div className="payee-form">
+            <PayeeForm
+              initialValues={{
+                [payeeFormFields.firstName]: payee.firstName,
+                [payeeFormFields.lastName]: payee.lastName,
+                [payeeFormFields.jobTitle]: payee.jobTitle,
+                [payeeFormFields.email]: payee.email,
+                [payeeFormFields.address]: payee.address,
+                [payeeFormFields.age]: payee.age,
+                [payeeFormFields.withHoldingTax]: payee.withHoldingTax,
+                [payeeFormFields.salary]: payee.salary,
+                [payeeFormFields.country]: payee.country,
+                [payeeFormFields.city]: payee.city,
+                [payeeFormFields.socialProfileLink]: payee.socialProfileLink,
+                [payeeFormFields.cardNumber]: payee.cardNumber,
+              }}
+              onClose={() => setFormOpened(false)}
+              onSave={onSave}
+            />
+          </div>
         </div>
       )}
     </div>

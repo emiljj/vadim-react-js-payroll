@@ -105,3 +105,27 @@
   width: 50%;
   height: auto;
 }
+
+.payee-information__form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 55%;
+  height: 300px;
+}
+
+.payee-form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 85%;
+  height: 320px;
+  line-height: 20px;
+}
+
+.edit-button {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: flex-start;
+}

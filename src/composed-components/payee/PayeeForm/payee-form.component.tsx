@@ -223,7 +223,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
             </label>
             <input
               className="input"
-              type="number"
+              type="text"
               onChange={this.onChange(payeeFormFields.cardNumber)}
               id={payeeFormFields.cardNumber}
               value={this.state[payeeFormFields.cardNumber]}

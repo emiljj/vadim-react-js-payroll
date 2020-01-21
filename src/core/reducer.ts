@@ -1,5 +1,5 @@
 import { combineReducers, AnyAction } from 'redux';
-import { CREATE_PAYEE } from './constants';
+import { CREATE_PAYEE, UPDATE_PAYEE } from './constants';
 import { DELETE_PAYEE } from './constants';
 import { ACTIVE_PAYEE } from './constants';
 import { DEACTIVATE_PAYEE } from './constants';
@@ -45,6 +45,16 @@ const payees = (state = initialState, action: AnyAction) => {
   } else if (action.type === DEACTIVATE_PAYEE) {
     const list = setActive(state, action.payload, false);
     return list;
+  } else if (action.type === UPDATE_PAYEE) {
+    const payload = action.payload;
+    console.log(payload);
+    const payeeIndex = state.findIndex(
+      element => element.id === payload.payeeId
+    );
+    const payeeData = state[payeeIndex];
+    const updatedData = Object.assign(payeeData, payload.data);
+    state[payeeIndex] = updatedData;
+    return state;
   }
   return state;
 };
