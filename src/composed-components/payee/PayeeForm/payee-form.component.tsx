@@ -17,13 +17,27 @@ interface IValues {
   cardNumber: string;
 }
 
+const testErrors = [
+  { fieldName: 'Test1', message: 'Test is a required' },
+  { fieldName: 'Test2', message: 'Test is a required' },
+  { fieldName: 'Test3', message: 'Test is a required' },
+];
+
 interface IPayeeFormProps {
   onClose: (isOpened: any) => void;
   onSave: (data: any) => void;
   initialValues?: { [key: string]: string | number };
 }
 
-interface IPayeeFormState extends IValues {}
+interface IFormError {
+  fieldName: string;
+  message: string;
+}
+
+interface IPayeeFormState {
+  values: IValues;
+  errors: IFormError[];
+}
 
 export const payeeFormFields = {
   firstName: 'firstName',
@@ -45,21 +59,27 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
     super(props);
 
     if (props.initialValues) {
-      this.state = props.initialValues;
+      this.state = {
+        values: props.initialValues,
+        errors: [],
+      };
     } else {
       this.state = {
-        [payeeFormFields.firstName]: '',
-        [payeeFormFields.lastName]: '',
-        [payeeFormFields.jobTitle]: '',
-        [payeeFormFields.email]: '',
-        [payeeFormFields.address]: '',
-        [payeeFormFields.age]: 18,
-        [payeeFormFields.withHoldingTax]: 0,
-        [payeeFormFields.salary]: 0,
-        [payeeFormFields.country]: '',
-        [payeeFormFields.city]: '',
-        [payeeFormFields.socialProfileLink]: '',
-        [payeeFormFields.cardNumber]: '',
+        values: {
+          [payeeFormFields.firstName]: '',
+          [payeeFormFields.lastName]: '',
+          [payeeFormFields.jobTitle]: '',
+          [payeeFormFields.email]: '',
+          [payeeFormFields.address]: '',
+          [payeeFormFields.age]: 18,
+          [payeeFormFields.withHoldingTax]: 0,
+          [payeeFormFields.salary]: 0,
+          [payeeFormFields.country]: '',
+          [payeeFormFields.city]: '',
+          [payeeFormFields.socialProfileLink]: '',
+          [payeeFormFields.cardNumber]: '',
+        },
+        errors: [],
       };
     }
   }
@@ -76,8 +96,21 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
     });
   };
 
-  render() {
+  payeeFormValidator = (): IFormError[] => {
+    const errors = [];
+    const { values } = this.state;
+    // TODO: logic with validation and put errors to errors[] array then return this array
+
+    return [];
+  };
+
+  onSaveButtonClick = () => {
     const { onSave } = this.props;
+    const errors = this.payeeFormValidator();
+    onSave(this.state.values);
+  };
+
+  render() {
     const { onClose } = this.props;
     return (
       <div>
@@ -91,7 +124,8 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
                 className="input"
                 type="text"
                 onChange={this.onChange(payeeFormFields.firstName)}
-                value={this.state[payeeFormFields.firstName]}
+                // TODO: Change everywhere where needed this.state.values[payeeFormFields.firstName]
+                value={this.state.values[payeeFormFields.firstName]}
                 id={payeeFormFields.firstName}
                 placeholder="Enter name"
               />
@@ -233,6 +267,11 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
             </div>
           </div>
         </div>
+        <div className="errors">
+          {testErrors.map((error: any) => {
+            return <p>{`${error.fieldName}: ${error.message}`}</p>;
+          })}
+        </div>
         <div className="button-container">
           <div className="button-bar">
             <button
@@ -242,7 +281,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
             </button>
             <button
               className="payee-form-save"
-              onClick={() => onSave(this.state)}>
+              onClick={this.onSaveButtonClick}>
               Save
             </button>
           </div>
