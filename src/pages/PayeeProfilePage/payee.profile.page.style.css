@@ -104,21 +104,11 @@
   height: auto;
 }
 
-.payee-information__form {
+.update-payee-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  width: 55%;
-  height: 400px;
-}
-
-.payees_form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-  width: 99%;
+  width: 100%;
   height: auto;
   line-height: 20px;
 }

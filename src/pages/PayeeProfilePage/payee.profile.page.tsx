@@ -104,27 +104,25 @@ const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
           </div>
         </div>
       ) : (
-        <div className="payee-information__form">
-          <div className="payees_form">
-            <PayeeForm
-              initialValues={{
-                [payeeFormFields.firstName]: payee.firstName,
-                [payeeFormFields.lastName]: payee.lastName,
-                [payeeFormFields.jobTitle]: payee.jobTitle,
-                [payeeFormFields.email]: payee.email,
-                [payeeFormFields.address]: payee.address,
-                [payeeFormFields.age]: payee.age,
-                [payeeFormFields.withHoldingTax]: payee.withHoldingTax,
-                [payeeFormFields.salary]: payee.salary,
-                [payeeFormFields.country]: payee.country,
-                [payeeFormFields.city]: payee.city,
-                [payeeFormFields.socialProfileLink]: payee.socialProfileLink,
-                [payeeFormFields.cardNumber]: payee.cardNumber,
-              }}
-              onClose={() => setFormOpened(false)}
-              onSave={onSave}
-            />
-          </div>
+        <div className="update-payee-form-container">
+          <PayeeForm
+            initialValues={{
+              [payeeFormFields.firstName]: payee.firstName,
+              [payeeFormFields.lastName]: payee.lastName,
+              [payeeFormFields.jobTitle]: payee.jobTitle,
+              [payeeFormFields.email]: payee.email,
+              [payeeFormFields.address]: payee.address,
+              [payeeFormFields.age]: payee.age,
+              [payeeFormFields.withHoldingTax]: payee.withHoldingTax,
+              [payeeFormFields.salary]: payee.salary,
+              [payeeFormFields.country]: payee.country,
+              [payeeFormFields.city]: payee.city,
+              [payeeFormFields.socialProfileLink]: payee.socialProfileLink,
+              [payeeFormFields.cardNumber]: payee.cardNumber,
+            }}
+            onClose={() => setFormOpened(false)}
+            onSave={onSave}
+          />
         </div>
       )}
     </div>
