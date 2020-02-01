@@ -34,11 +34,6 @@ interface IFormError {
   message: string;
 }
 
-interface IPayeeFormState {
-  values: IValues;
-  errors: IFormError[];
-}
-
 export const payeeFormFields = {
   firstName: 'firstName',
   lastName: 'lastName',
@@ -85,6 +80,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
   }
 
   onChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { values } = this.state;
     let value: string | number = e.target.value;
 
     if (e.target.type === 'number') {
@@ -92,7 +88,10 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
     }
 
     this.setState({
-      [field]: value,
+      values: {
+        ...values,
+        [field]: value,
+      },
     });
   };
 
@@ -116,7 +115,6 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
 
     if (errors.length) {
       this.setState({ errors });
-      console.log(errors);
       return;
     }
     onSave(this.state.values);
@@ -126,7 +124,6 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
     const { onClose } = this.props;
     return (
       <div>
-        {}
         <div className="create-payee-form-container">
           <div className="create-payee-form">
             <div className="columnLeft">
@@ -137,7 +134,6 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
                 className="input"
                 type="text"
                 onChange={this.onChange(payeeFormFields.firstName)}
-                // TODO: Change everywhere where needed this.state.values[payeeFormFields.firstName]
                 value={this.state.values[payeeFormFields.firstName]}
                 id={payeeFormFields.firstName}
                 placeholder="Enter name"
@@ -283,7 +279,12 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
         <div className="errors-bar">
           <div className="errors">
             {testErrors.map((error: any) => {
-              return <p>{`${error.fieldName}: ${error.message}`}</p>;
+              return (
+                <p
+                  key={
+                    error.fieldName
+                  }>{`${error.fieldName}: ${error.message}`}</p>
+              );
             })}
           </div>
         </div>
