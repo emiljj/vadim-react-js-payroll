@@ -18,7 +18,7 @@ interface IValues {
 }
 
 const testErrors = [
-  { fieldName: 'Test1', message: 'Test is a required' },
+  { fieldName: 'first name', message: 'Test is a required' },
   { fieldName: 'Test2', message: 'Test is a required' },
   { fieldName: 'Test3', message: 'Test is a required' },
 ];
@@ -99,14 +99,26 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
   payeeFormValidator = (): IFormError[] => {
     const errors = [];
     const { values } = this.state;
+    if (!values.firstName) {
+      errors.push({
+        fieldName: 'First Name',
+        message: 'is a required field',
+      });
+    }
     // TODO: logic with validation and put errors to errors[] array then return this array
 
-    return [];
+    return errors;
   };
 
   onSaveButtonClick = () => {
     const { onSave } = this.props;
     const errors = this.payeeFormValidator();
+
+    if (errors.length) {
+      this.setState({ errors });
+      console.log(errors);
+      return;
+    }
     onSave(this.state.values);
   };
 
@@ -114,6 +126,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
     const { onClose } = this.props;
     return (
       <div>
+        {}
         <div className="create-payee-form-container">
           <div className="create-payee-form">
             <div className="columnLeft">
@@ -136,7 +149,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
                 className="input"
                 type="text"
                 onChange={this.onChange(payeeFormFields.lastName)}
-                value={this.state[payeeFormFields.lastName]}
+                value={this.state.values[payeeFormFields.lastName]}
                 id={payeeFormFields.lastName}
                 placeholder="Enter last name"
               />
@@ -150,7 +163,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
                 onChange={this.onChange(payeeFormFields.jobTitle)}
                 id={payeeFormFields.jobTitle}
                 placeholder="Enter job title"
-                value={this.state[payeeFormFields.jobTitle]}
+                value={this.state.values[payeeFormFields.jobTitle]}
               />
 
               <label htmlFor={payeeFormFields.email} className="label">
@@ -161,7 +174,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
                 type="text"
                 onChange={this.onChange(payeeFormFields.email)}
                 id={payeeFormFields.email}
-                value={this.state[payeeFormFields.email]}
+                value={this.state.values[payeeFormFields.email]}
                 placeholder="Enter email"
               />
 
@@ -173,7 +186,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
                 type="text"
                 onChange={this.onChange(payeeFormFields.address)}
                 id={payeeFormFields.address}
-                value={this.state[payeeFormFields.address]}
+                value={this.state.values[payeeFormFields.address]}
                 placeholder="Enter address"
               />
 
@@ -185,7 +198,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
                 type="number"
                 onChange={this.onChange(payeeFormFields.age)}
                 id={payeeFormFields.age}
-                value={this.state[payeeFormFields.age]}
+                value={this.state.values[payeeFormFields.age]}
                 placeholder="Enter age"
               />
             </div>
@@ -199,7 +212,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
                 type="number"
                 onChange={this.onChange(payeeFormFields.withHoldingTax)}
                 id={payeeFormFields.withHoldingTax}
-                value={this.state[payeeFormFields.withHoldingTax]}
+                value={this.state.values[payeeFormFields.withHoldingTax]}
                 placeholder="Enter with holding tax"
               />
 
@@ -210,7 +223,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
                 className="input"
                 type="number"
                 onChange={this.onChange(payeeFormFields.salary)}
-                value={this.state[payeeFormFields.salary]}
+                value={this.state.values[payeeFormFields.salary]}
                 id={payeeFormFields.salary}
                 placeholder="Enter salary"
               />
@@ -221,7 +234,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
               <input
                 className="input"
                 type="text"
-                value={this.state[payeeFormFields.country]}
+                value={this.state.values[payeeFormFields.country]}
                 onChange={this.onChange(payeeFormFields.country)}
                 id={payeeFormFields.country}
                 placeholder="Enter country"
@@ -234,7 +247,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
                 className="input"
                 type="text"
                 onChange={this.onChange(payeeFormFields.city)}
-                value={this.state[payeeFormFields.city]}
+                value={this.state.values[payeeFormFields.city]}
                 id={payeeFormFields.city}
                 placeholder="Enter city"
               />
@@ -249,7 +262,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
                 type="text"
                 onChange={this.onChange(payeeFormFields.socialProfileLink)}
                 id={payeeFormFields.socialProfileLink}
-                value={this.state[payeeFormFields.socialProfileLink]}
+                value={this.state.values[payeeFormFields.socialProfileLink]}
                 placeholder="Enter social profile link"
               />
 
@@ -261,22 +274,24 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
                 type="text"
                 onChange={this.onChange(payeeFormFields.cardNumber)}
                 id={payeeFormFields.cardNumber}
-                value={this.state[payeeFormFields.cardNumber]}
+                value={this.state.values[payeeFormFields.cardNumber]}
                 placeholder="Enter card number"
               />
             </div>
           </div>
         </div>
-        <div className="errors">
-          {testErrors.map((error: any) => {
-            return <p>{`${error.fieldName}: ${error.message}`}</p>;
-          })}
+        <div className="errors-bar">
+          <div className="errors">
+            {testErrors.map((error: any) => {
+              return <p>{`${error.fieldName}: ${error.message}`}</p>;
+            })}
+          </div>
         </div>
         <div className="button-container">
           <div className="button-bar">
             <button
               className="payee-form-cancel"
-              onClick={() => onClose(this.state)}>
+              onClick={() => onClose(this.state.values)}>
               Cancel
             </button>
             <button

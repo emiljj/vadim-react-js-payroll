@@ -104,6 +104,21 @@
   height: auto;
 }
 
+.errors-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.errors {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 38%;
+  color: red;
+}
+
 .update-payee-form-container {
   display: flex;
   justify-content: center;
