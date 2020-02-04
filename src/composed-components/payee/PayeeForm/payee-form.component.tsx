@@ -17,12 +17,6 @@ interface IValues {
   cardNumber: string;
 }
 
-const testErrors = [
-  { fieldName: 'first name', message: 'Test is a required' },
-  { fieldName: 'Test2', message: 'Test is a required' },
-  { fieldName: 'Test3', message: 'Test is a required' },
-];
-
 interface IPayeeFormProps {
   onClose: (isOpened: any) => void;
   onSave: (data: any) => void;
@@ -101,6 +95,61 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
     if (!values.firstName) {
       errors.push({
         fieldName: 'First Name',
+        message: 'is a required field',
+      });
+    } else if (!values.lastName) {
+      errors.push({
+        fieldName: 'Last Name',
+        message: 'is a required field',
+      });
+    } else if (!values.jobTitle) {
+      errors.push({
+        fieldName: 'Job Title',
+        message: 'is a required field',
+      });
+    } else if (!values.email) {
+      errors.push({
+        fieldName: 'Email',
+        message: 'is a required field',
+      });
+    } else if (!values.address) {
+      errors.push({
+        fieldName: 'Address',
+        message: 'is a required field',
+      });
+    } else if (!values.age) {
+      errors.push({
+        fieldName: 'Age',
+        message: 'is a required field',
+      });
+    } else if (!values.withHoldingTax) {
+      errors.push({
+        fieldName: 'With Holding Tax',
+        message: 'is a required field',
+      });
+    } else if (!values.salary) {
+      errors.push({
+        fieldName: 'Salary',
+        message: 'is a required field',
+      });
+    } else if (!values.country) {
+      errors.push({
+        fieldName: 'Country',
+        message: 'is a required field',
+      });
+    } else if (!values.city) {
+      errors.push({
+        fieldName: 'City',
+        message: 'is a required field',
+      });
+    } else if (!values.socialProfileLink) {
+      errors.push({
+        fieldName: 'Social Profile Link',
+        message: 'is a required field',
+      });
+    } else if (!values.cardNumber) {
+      errors.push({
+        fieldName: 'Card Number',
         message: 'is a required field',
       });
     }
@@ -278,7 +327,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
         </div>
         <div className="errors-bar">
           <div className="errors">
-            {testErrors.map((error: any) => {
+            {this.state.errors.map((error: any) => {
               return (
                 <p
                   key={
