@@ -4,6 +4,7 @@ import { DELETE_PAYEE } from './constants';
 import { ACTIVE_PAYEE } from './constants';
 import { DEACTIVATE_PAYEE } from './constants';
 import { PAY_PAYEE } from './constants';
+import { GET_PAYEES_SUCCESS } from './constants';
 import { IPayee } from './payee/payee.types';
 
 const initialState = [
@@ -55,6 +56,9 @@ const payees = (state = initialState, action: AnyAction) => {
     const payeeData = list[payeeIndex];
     const updatedData = Object.assign(payeeData, payload.data);
     list[payeeIndex] = updatedData;
+    return list;
+  } else if (action.type === GET_PAYEES_SUCCESS) {
+    const list = state.concat(action.payload);
     return list;
   }
   return state;

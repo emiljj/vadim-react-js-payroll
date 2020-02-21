@@ -4,3 +4,4 @@ export const ACTIVE_PAYEE = 'ACTIVE_PAYEE';
 export const DEACTIVATE_PAYEE = 'DEACTIVATE_PAYEE';
 export const PAY_PAYEE = 'PAY_PAYEE';
 export const UPDATE_PAYEE = 'UPDATE_PAYEE';
+export const GET_PAYEES_SUCCESS = 'GET_PAYEES_SUCCESS';

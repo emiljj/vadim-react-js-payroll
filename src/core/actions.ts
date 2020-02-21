@@ -4,6 +4,7 @@ import { ACTIVE_PAYEE } from './constants';
 import { DEACTIVATE_PAYEE } from './constants';
 import { PAY_PAYEE } from './constants';
 import { UPDATE_PAYEE } from './constants';
+import { GET_PAYEES_SUCCESS } from './constants';
 
 export const createPayeeAction = (payload: any) => ({
   type: CREATE_PAYEE,
@@ -32,5 +33,10 @@ export const payPayeeAction = (payload: number) => ({
 
 export const updatePayeeAction = (payload: any) => ({
   type: UPDATE_PAYEE,
+  payload,
+});
+
+export const getPayeesSuccessAction = (payload: any) => ({
+  type: GET_PAYEES_SUCCESS,
   payload,
 });

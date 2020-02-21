@@ -9,6 +9,7 @@ import {
   activePayeeAction,
   deactivatePayeeAction,
   payPayeeAction,
+  getPayeesSuccessAction,
 } from '../../core/actions';
 
 import PayeePageHeader from './PayeePageHeader';
@@ -25,6 +26,7 @@ interface IPayeesPageProps {
   activePayeeAction: ActionCreator<AnyAction>;
   deactivatePayeeAction: ActionCreator<AnyAction>;
   payPayeeAction: ActionCreator<AnyAction>;
+  getPayeesSuccessAction: ActionCreator<AnyAction>;
 }
 
 interface IPayeesPageState {
@@ -48,6 +50,14 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
     showNotPayeesMessage: false,
     showBalanceMessage: false,
   };
+
+  componentDidMount() {
+    fetch('http://localhost:3001/payee', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(result => getPayeesSuccessAction(result));
+  }
 
   calculatePayeesTotalSalary = (): number => {
     const { payees } = this.props;
@@ -266,6 +276,7 @@ const dispatchToProps = {
   activePayeeAction,
   deactivatePayeeAction,
   payPayeeAction,
+  getPayeesSuccessAction,
 };
 
 export default connect(mapStateToProps, dispatchToProps)(PayeesPage);
