@@ -58,8 +58,7 @@ const payees = (state = initialState, action: AnyAction) => {
     list[payeeIndex] = updatedData;
     return list;
   } else if (action.type === GET_PAYEES_SUCCESS) {
-    const list = state.concat(action.payload);
-    return list;
+    return action.payload;
   }
   return state;
 };

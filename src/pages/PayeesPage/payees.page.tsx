@@ -52,6 +52,7 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
   };
 
   componentDidMount() {
+    const { getPayeesSuccessAction } = this.props;
     fetch('http://localhost:3001/payee', {
       method: 'GET',
     })
@@ -270,6 +271,12 @@ const mapStateToProps = (state: any) => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(getPayeesSuccessAction, dispatch),
+  };
+};
+
 const dispatchToProps = {
   deletePayeeAction,
   createPayeeAction,
@@ -279,4 +286,8 @@ const dispatchToProps = {
   getPayeesSuccessAction,
 };
 
-export default connect(mapStateToProps, dispatchToProps)(PayeesPage);
+export default connect(
+  mapStateToProps,
+  dispatchToProps,
+  mapDispatchToProps
+)(PayeesPage);
