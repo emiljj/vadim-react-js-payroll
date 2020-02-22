@@ -26,7 +26,7 @@ interface IPayeesPageProps {
   activePayeeAction: ActionCreator<AnyAction>;
   deactivatePayeeAction: ActionCreator<AnyAction>;
   payPayeeAction: ActionCreator<AnyAction>;
-  getPayeesSuccessAction: ActionCreator<AnyAction>;
+  getPayees: ActionCreator<AnyAction>;
 }
 
 interface IPayeesPageState {
@@ -52,12 +52,11 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
   };
 
   componentDidMount() {
-    const { getPayeesSuccessAction } = this.props;
     fetch('http://localhost:3001/payee', {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(result => getPayeesSuccessAction(result));
+      .then(result => this.props.getPayees(result));
   }
 
   calculatePayeesTotalSalary = (): number => {
@@ -271,23 +270,13 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    actions: bindActionCreators(getPayeesSuccessAction, dispatch),
-  };
-};
-
 const dispatchToProps = {
   deletePayeeAction,
   createPayeeAction,
   activePayeeAction,
   deactivatePayeeAction,
   payPayeeAction,
-  getPayeesSuccessAction,
+  getPayees: getPayeesSuccessAction,
 };
 
-export default connect(
-  mapStateToProps,
-  dispatchToProps,
-  mapDispatchToProps
-)(PayeesPage);
+export default connect(mapStateToProps, dispatchToProps)(PayeesPage);
