@@ -1,5 +1,5 @@
 export interface IPayee {
-  id: number;
+  _id: string;
   firstName: string;
   lastName: string;
   jobTitle: string;

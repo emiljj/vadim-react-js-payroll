@@ -30,7 +30,7 @@ interface IPayeesPageProps {
 }
 
 interface IPayeesPageState {
-  activeId: number | null;
+  activeId: string | null;
   formOpened: boolean;
   activate: boolean;
   deactivate: boolean;
@@ -56,7 +56,10 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(result => this.props.getPayees(result));
+      .then(result => {
+        console.log({ result });
+        this.props.getPayees(result);
+      });
   }
 
   calculatePayeesTotalSalary = (): number => {
@@ -95,11 +98,11 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
     return 0;
   };
 
-  setOpenedId = (id: number | null): void => {
+  setOpenedId = (id: string | null): void => {
     this.setState({ activeId: id });
   };
 
-  deletePayee = (payeeId: number) => {
+  deletePayee = (payeeId: string) => {
     fetch('http://localhost:3001/payee/payeeId', {
       method: 'DELETE',
     })
@@ -107,11 +110,11 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
       .then(result => this.props.deletePayeeAction(result));
   };
 
-  activePayee = (payeeId: number) => {
+  activePayee = (payeeId: string) => {
     this.props.activePayeeAction(payeeId);
   };
 
-  deactivatePayee = (payeeId: number) => {
+  deactivatePayee = (payeeId: string) => {
     this.props.deactivatePayeeAction(payeeId);
   };
 
@@ -243,18 +246,18 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
         {!formOpened ? (
           <div className="payee-page__payees-list">
             {payees.map((payee: IPayee) => {
-              const isOpened: boolean = activeId === payee.id;
+              const isOpened: boolean = activeId === payee._id;
               return (
                 <PayeeCard
                   payee={payee}
-                  key={payee.id}
+                  key={payee._id}
                   isOpened={isOpened}
-                  handleSeeMoreBtnClick={() => this.setOpenedId(payee.id)}
+                  handleSeeMoreBtnClick={() => this.setOpenedId(payee._id)}
                   handleSeeLessBtnClick={() => this.setOpenedId(null)}
-                  handleDeleteBtnClick={() => this.deletePayee(payee.id)}
-                  handleActiveBtnClick={() => this.activePayee(payee.id)}
+                  handleDeleteBtnClick={() => this.deletePayee(payee._id)}
+                  handleActiveBtnClick={() => this.activePayee(payee._id)}
                   handleDeactivateBtnClick={() =>
-                    this.deactivatePayee(payee.id)
+                    this.deactivatePayee(payee._id)
                   }
                 />
               );

@@ -13,7 +13,7 @@ import PayeeForm, {
 const getSelector = (payeeId: string) => {
   const selector = (state: any) => {
     return state.payees.find((payee: IPayee) => {
-      return +payee.id === +payeeId;
+      return +payee._id === +payeeId;
     });
   };
 

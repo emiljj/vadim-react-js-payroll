@@ -53,7 +53,7 @@ const PayeeCard = (props: IPayeeCardProps) => {
         </div>
       </div>
       <div className="payee-card__link-bar">
-        <a className="payee-card__link" href={`/payee/${payee.id}`}>
+        <a className="payee-card__link" href={`/payee/${payee._id}`}>
           View profile
         </a>
       </div>
