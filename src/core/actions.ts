@@ -11,7 +11,7 @@ export const createPayeeAction = (payload: any) => ({
   payload,
 });
 
-export const deletePayeeAction = (payload: number) => ({
+export const deletePayeeAction = (payload: any) => ({
   type: DELETE_PAYEE,
   payload,
 });

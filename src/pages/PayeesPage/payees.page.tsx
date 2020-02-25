@@ -68,7 +68,7 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
     const { payees } = this.props;
     return payees.reduce((acc, payee) => {
       const admin = 'ADMIN';
-      const role = payee.role;
+      const role = 'User';
       const name = `${payee.firstName} ${payee.lastName}`;
 
       if (role.includes(admin)) {
@@ -100,7 +100,11 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
   };
 
   deletePayee = (payeeId: number) => {
-    this.props.deletePayeeAction(payeeId);
+    fetch('http://localhost:3001/payee/payeeId', {
+      method: 'DELETE',
+    })
+      .then(response => response.json())
+      .then(result => this.props.deletePayeeAction(result));
   };
 
   activePayee = (payeeId: number) => {
@@ -152,12 +156,15 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
   };
 
   createPayee = (data: any) => {
-    const newPayee = Object.assign(data, {
-      id: Math.random(),
-      role: ['USER'],
-      active: false,
-    });
-    this.props.createPayeeAction(newPayee);
+    fetch('http://localhost:3001/payee/', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(result => this.props.createPayeeAction(result));
     this.closeForm();
   };
 
