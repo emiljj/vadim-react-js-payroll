@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { IPayee } from '../../core/payee/payee.types';
-import { updatePayeeAction } from '../../core/actions';
+import {
+  updatePayeeAction,
+  getPayeesProfileSuccessAction,
+} from '../../core/actions';
 import { ActionCreator, AnyAction } from 'redux';
 
 import './payee.profile.page.style.css';
@@ -26,11 +29,21 @@ interface IPayeeProfilePageProps
 }
 
 const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    fetch('http://localhost:3001/payee/5e55501107cae33f41598e20', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(result => {
+        dispatch(getPayeesProfileSuccessAction(result));
+      });
+  });
+
   const { payeeId } = props.match.params;
   const selector = getSelector(payeeId);
   const payee: IPayee = useSelector(selector);
   const [formOpened, setFormOpened] = useState(false);
-  const dispatch = useDispatch();
 
   if (!payee) {
     return <div>There is not payee with this ID!!!</div>;

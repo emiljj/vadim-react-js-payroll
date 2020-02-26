@@ -103,7 +103,7 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
   };
 
   deletePayee = (payeeId: string) => {
-    fetch('http://localhost:3001/payee/payeeId', {
+    fetch(`http://localhost:3001/payee/${payeeId}`, {
       method: 'DELETE',
     })
       .then(response => response.json())

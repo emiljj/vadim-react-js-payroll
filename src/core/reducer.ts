@@ -5,6 +5,7 @@ import { ACTIVE_PAYEE } from './constants';
 import { DEACTIVATE_PAYEE } from './constants';
 import { PAY_PAYEE } from './constants';
 import { GET_PAYEES_SUCCESS } from './constants';
+import { GET_PAYEE_PROFILE_SUCCESS } from './constants';
 import { IPayee } from './payee/payee.types';
 
 const setActive = (list: IPayee[], id: string, active: boolean) => {
@@ -28,7 +29,6 @@ const payees = (state: IPayee[] = [], action: AnyAction) => {
   } else if (action.type === UPDATE_PAYEE) {
     const list = [...state];
     const payload = action.payload;
-    console.log(payload);
     const payeeIndex = list.findIndex(
       element => +element._id === +payload.payeeId
     );
@@ -38,6 +38,8 @@ const payees = (state: IPayee[] = [], action: AnyAction) => {
     return list;
   } else if (action.type === GET_PAYEES_SUCCESS) {
     return action.payload;
+  } else if (action.type === GET_PAYEE_PROFILE_SUCCESS) {
+    return [action.payload];
   }
   return state;
 };

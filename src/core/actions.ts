@@ -5,6 +5,7 @@ import { DEACTIVATE_PAYEE } from './constants';
 import { PAY_PAYEE } from './constants';
 import { UPDATE_PAYEE } from './constants';
 import { GET_PAYEES_SUCCESS } from './constants';
+import { GET_PAYEE_PROFILE_SUCCESS } from './constants';
 
 export const createPayeeAction = (payload: any) => ({
   type: CREATE_PAYEE,
@@ -38,5 +39,10 @@ export const updatePayeeAction = (payload: any) => ({
 
 export const getPayeesSuccessAction = (payload: any) => ({
   type: GET_PAYEES_SUCCESS,
+  payload,
+});
+
+export const getPayeesProfileSuccessAction = (payload: any) => ({
+  type: GET_PAYEE_PROFILE_SUCCESS,
   payload,
 });
