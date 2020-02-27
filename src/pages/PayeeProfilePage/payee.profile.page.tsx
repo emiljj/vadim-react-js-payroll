@@ -29,7 +29,12 @@ interface IPayeeProfilePageProps
 }
 
 const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
+  const { payeeId } = props.match.params;
+  const selector = getSelector(payeeId);
+  const payee: IPayee = useSelector(selector);
+  const [formOpened, setFormOpened] = useState(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     fetch(`http://localhost:3001/payee/${payeeId}`, {
       method: 'GET',
@@ -41,15 +46,6 @@ const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
         }
       });
   });
-
-  const { payeeId } = props.match.params;
-  const selector = getSelector(payeeId);
-  const payee: IPayee = useSelector(selector);
-  const [formOpened, setFormOpened] = useState(false);
-
-  if (!payee) {
-    return <div>There is not payee with this ID!!!</div>;
-  }
 
   const onSave = (data: any) => {
     fetch(`http://localhost:3001/payee/${payeeId}`, {
@@ -67,6 +63,10 @@ const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
         setFormOpened(false);
       });
   };
+
+  if (!payee) {
+    return <div>There is not payee with this ID!!!</div>;
+  }
 
   return (
     <div className="profile">

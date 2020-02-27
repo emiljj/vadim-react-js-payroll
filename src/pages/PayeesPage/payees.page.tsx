@@ -32,8 +32,6 @@ interface IPayeesPageProps {
 interface IPayeesPageState {
   activeId: string | null;
   formOpened: boolean;
-  activate: boolean;
-  deactivate: boolean;
   showSuccessMessage: boolean;
   showNotPayeesMessage: boolean;
   showBalanceMessage: boolean;
@@ -44,8 +42,6 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
     activeId: null,
     formOpened: false,
     formClosed: true,
-    activate: false,
-    deactivate: true,
     showSuccessMessage: false,
     showNotPayeesMessage: false,
     showBalanceMessage: false,
@@ -148,14 +144,6 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
 
   closeSuccessMassage = (): void => {
     this.setState({ showSuccessMessage: false });
-  };
-
-  active = (): void => {
-    this.setState({ activate: true });
-  };
-
-  deactivate = (): void => {
-    this.setState({ activate: false });
   };
 
   createPayee = (data: any) => {
