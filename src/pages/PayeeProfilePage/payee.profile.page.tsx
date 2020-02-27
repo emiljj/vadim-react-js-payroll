@@ -16,7 +16,7 @@ import PayeeForm, {
 const getSelector = (payeeId: string) => {
   const selector = (state: any) => {
     return state.payees.find((payee: IPayee) => {
-      return +payee._id === +payeeId;
+      return payee._id === payeeId;
     });
   };
 
@@ -31,12 +31,14 @@ interface IPayeeProfilePageProps
 const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    fetch('http://localhost:3001/payee/5e55501107cae33f41598e20', {
+    fetch(`http://localhost:3001/payee/${payeeId}`, {
       method: 'GET',
     })
       .then(res => res.json())
       .then(result => {
-        dispatch(getPayeesProfileSuccessAction(result));
+        if (result) {
+          dispatch(getPayeesProfileSuccessAction(result));
+        }
       });
   });
 
@@ -50,8 +52,20 @@ const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
   }
 
   const onSave = (data: any) => {
-    dispatch(updatePayeeAction({ payeeId, data }));
-    setFormOpened(false);
+    fetch(`http://localhost:3001/payee/${payeeId}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result) {
+          dispatch(updatePayeeAction({ payeeId, data }));
+        }
+        setFormOpened(false);
+      });
   };
 
   return (

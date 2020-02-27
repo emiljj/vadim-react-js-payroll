@@ -30,7 +30,7 @@ const payees = (state: IPayee[] = [], action: AnyAction) => {
     const list = [...state];
     const payload = action.payload;
     const payeeIndex = list.findIndex(
-      element => +element._id === +payload.payeeId
+      element => element._id === payload.payeeId
     );
     const payeeData = list[payeeIndex];
     const updatedData = Object.assign(payeeData, payload.data);
