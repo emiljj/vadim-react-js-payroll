@@ -153,7 +153,6 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
         message: 'is a required field',
       });
     }
-    // TODO: logic with validation and put errors to errors[] array then return this array
 
     return errors;
   };

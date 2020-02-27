@@ -7,7 +7,7 @@ export interface IPayee {
   emailAddress: string;
   address: string;
   age: number;
-  role: string[];
+  roles: string[];
   withHoldingTax: number;
   salary: number;
   country: string;

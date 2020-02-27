@@ -71,10 +71,10 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
     const { payees } = this.props;
     return payees.reduce((acc, payee) => {
       const admin = 'ADMIN';
-      const role = 'User';
+      const roles = payee.roles;
       const name = `${payee.firstName} ${payee.lastName}`;
 
-      if (role.includes(admin)) {
+      if (roles.includes(admin)) {
         const comma = acc.length ? ', ' : '';
         return acc + comma + name;
       }
