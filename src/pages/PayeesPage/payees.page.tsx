@@ -111,7 +111,16 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
   };
 
   activePayee = (payeeId: string) => {
-    this.props.activePayeeAction(payeeId);
+    const activate = { active: true, id: payeeId };
+    fetch(`http://localhost:3001/payee/${payeeId}`, {
+      method: 'PUT',
+      body: JSON.stringify(activate),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(result => this.props.activePayeeAction(result));
   };
 
   deactivatePayee = (payeeId: string) => {
