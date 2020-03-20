@@ -17,12 +17,12 @@ export const deletePayeeAction = (payload: any) => ({
   payload,
 });
 
-export const activePayeeAction = (payload: boolean) => ({
+export const activePayeeAction = (payload: any) => ({
   type: ACTIVE_PAYEE,
   payload,
 });
 
-export const deactivatePayeeAction = (payload: boolean) => ({
+export const deactivatePayeeAction = (payload: any) => ({
   type: DEACTIVATE_PAYEE,
   payload,
 });

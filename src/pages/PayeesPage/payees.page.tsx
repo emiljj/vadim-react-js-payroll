@@ -111,11 +111,10 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
   };
 
   activePayee = (payeeId: string) => {
-    // const dispatch = useDispatch();
-    const activate = { active: true, id: payeeId };
+    const reqBody = { active: true };
     fetch(`http://localhost:3001/payee/activate/${payeeId}`, {
       method: 'PUT',
-      body: JSON.stringify(activate),
+      body: JSON.stringify(reqBody),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -125,7 +124,16 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
   };
 
   deactivatePayee = (payeeId: string) => {
-    this.props.deactivatePayeeAction(payeeId);
+    const reqBody = { active: false };
+    fetch(`http://localhost:3001/payee/activate/${payeeId}`, {
+      method: 'PUT',
+      body: JSON.stringify(reqBody),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(result => this.props.deactivatePayeeAction(result));
   };
 
   openForm = (): void => {

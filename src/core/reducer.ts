@@ -10,7 +10,10 @@ import { IPayee } from './payee/payee.types';
 
 const setActive = (list: IPayee[], id: string, active: boolean) => {
   const newList = [...list];
+  console.log('===>', newList);
   const index = list.findIndex(element => element._id === id);
+  console.log('===>', index);
+  console.log('===>', newList[index]);
   list.splice(index, 1, Object.assign(newList[index], { active }));
   return newList;
 };
@@ -21,10 +24,10 @@ const payees = (state: IPayee[] = [], action: AnyAction) => {
   } else if (action.type === DELETE_PAYEE) {
     return state.filter(item => item._id !== action.payload);
   } else if (action.type === ACTIVE_PAYEE) {
-    const list = setActive(state, action.payload, true);
+    const list = setActive(state, action.payload._id, true);
     return list;
   } else if (action.type === DEACTIVATE_PAYEE) {
-    const list = setActive(state, action.payload, false);
+    const list = setActive(state, action.payload._id, false);
     return list;
   } else if (action.type === UPDATE_PAYEE) {
     const list = [...state];
