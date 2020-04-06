@@ -57,23 +57,25 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
     });
   };
 
-  loginButtonSave = (data: any) => {
-    data = {
+  loginButtonSave = () => {
+    const data = {
       companyID: this.state.values.companyID,
       password: this.state.values.password,
     };
+    console.log('dadadad', data);
 
     fetch(`http://localhost:3001/company/login-admin`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
     })
       .then(response => response.json())
       .then(result => {
         if (result) {
-          console.log('POST RESULT=>>', result);
+          console.log('POST RESULT=>>', { result });
         }
       });
   };
@@ -112,10 +114,12 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
               placeholder="Password"
             />
             <button
-              type="submit"
               value="Login"
               className="login-form-submit"
-              onClick={this.loginButtonSave}>
+              onClick={(e: React.MouseEvent) => {
+                e.preventDefault();
+                this.loginButtonSave();
+              }}>
               Login
             </button>
           </form>
