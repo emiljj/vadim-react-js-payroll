@@ -18,6 +18,12 @@ const Header = () => {
         <NavLink className="header_link" to="/admin-profile">
           Your profile
         </NavLink>
+        <NavLink className="header_link" to="/payments">
+          Payments
+        </NavLink>
+        <NavLink className="header_link" to="/login">
+          Login
+        </NavLink>
       </div>
     </div>
   );

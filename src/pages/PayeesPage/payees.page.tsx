@@ -197,6 +197,21 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
       0
     );
 
+    const payment = {
+      total: totalSalary,
+      numberOfPayees: activePayee.length,
+      companyBalance: companyBalance,
+    };
+    fetch('http://localhost:3001/payment/', {
+      method: 'POST',
+      body: JSON.stringify(payment),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(result => console.log(result));
+
     if (totalSalary > companyBalance) {
       return this.setState({ showBalanceMessage: true });
     } else if (!totalSalary) {

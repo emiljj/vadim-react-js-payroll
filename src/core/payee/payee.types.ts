@@ -16,3 +16,15 @@ export interface IPayee {
   cardNumber: string;
   active: boolean;
 }
+
+export interface IPayments {
+  total: number;
+  numberOfPayees: number;
+  createdAt: number;
+  companyBalance: number;
+}
+
+export interface ICompany {
+  companyID: string;
+  password: string;
+}
