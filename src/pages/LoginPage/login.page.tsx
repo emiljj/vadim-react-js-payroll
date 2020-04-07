@@ -59,24 +59,26 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
 
   loginButtonSave = () => {
     const data = {
-      companyID: this.state.values.companyID,
+      companyId: this.state.values.companyID,
       password: this.state.values.password,
     };
     console.log('dadadad', data);
-
     fetch(`http://localhost:3001/company/login-admin`, {
       method: 'POST',
-      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
       },
+      body: JSON.stringify(data),
     })
       .then(response => response.json())
-      .then(result => {
-        if (result) {
-          console.log('POST RESULT=>>', { result });
-        }
+      .then((result: any) => {
+        console.log(result);
+        const { token, company } = result;
+        localStorage.setItem('token', token);
+        localStorage.setItem('company', company);
+      })
+      .catch(error => {
+        console.error('Error:', error.message);
       });
   };
 
