@@ -25,9 +25,9 @@ interface IPaymentFormProps {
 class LoginPage extends React.Component<IPaymentFormProps, any> {
   constructor(props: IPaymentFormProps) {
     super(props);
-
     if (props.initialValues) {
       this.state = {
+        errorMassage: '',
         values: props.initialValues,
       };
     } else {
@@ -62,7 +62,7 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
       companyId: this.state.values.companyID,
       password: this.state.values.password,
     };
-    console.log('dadadad', data);
+
     fetch(`http://localhost:3001/company/login-admin`, {
       method: 'POST',
       headers: {
@@ -78,11 +78,12 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
         localStorage.setItem('company', company);
       })
       .catch(error => {
-        console.error('Error:', error.message);
+        this.setState({ errorMassage: error });
       });
   };
 
   render() {
+    const { errorMassage } = this.state;
     return (
       <div className="body">
         <div className="main-holder">
@@ -105,7 +106,6 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
               className="login-form-field"
               placeholder="Company ID"
             />
-
             <input
               type="password"
               name="Password"
@@ -115,6 +115,8 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
               className="login-form-field"
               placeholder="Password"
             />
+            {errorMassage && <div>{errorMassage}</div>}
+            <p>{this.state.errorMassage}</p>
             <button
               value="Login"
               className="login-form-submit"
