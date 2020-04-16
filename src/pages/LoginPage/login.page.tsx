@@ -25,19 +25,13 @@ interface IPaymentFormProps {
 class LoginPage extends React.Component<IPaymentFormProps, any> {
   constructor(props: IPaymentFormProps) {
     super(props);
-    if (props.initialValues) {
-      this.state = {
-        errorMassage: '',
-        values: props.initialValues,
-      };
-    } else {
-      this.state = {
-        values: {
-          [loginFormFields.companyID]: '',
-          [loginFormFields.password]: '',
-        },
-      };
-    }
+    this.state = {
+      errorMassage: '',
+      values: {
+        [loginFormFields.companyID]: '',
+        [loginFormFields.password]: '',
+      },
+    };
   }
 
   onChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,23 +72,18 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
         localStorage.setItem('company', company);
       })
       .catch(error => {
+        console.log('catch===>>>', error);
         this.setState({ errorMassage: error });
       });
   };
 
   render() {
     const { errorMassage } = this.state;
+    console.log('massage==>>', errorMassage);
     return (
       <div className="body">
         <div className="main-holder">
           <h1 className="login-header">Login</h1>
-
-          <div className="login-error-msg-holder">
-            <p className="login-error-msg">
-              Invalid username
-              <span className="error-msg-second-line">and/or password</span>
-            </p>
-          </div>
 
           <form className="login-form">
             <input
@@ -115,8 +104,9 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
               className="login-form-field"
               placeholder="Password"
             />
-            {errorMassage && <div>{errorMassage}</div>}
-            <p>{this.state.errorMassage}</p>
+            {errorMassage && (
+              <div className="errorMassage">{this.state.errorMassage}</div>
+            )}
             <button
               value="Login"
               className="login-form-submit"
