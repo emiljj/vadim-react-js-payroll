@@ -36,7 +36,6 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
 
   onChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const { values } = this.state;
-    console.log(values);
     let value: string | number = e.target.value;
 
     if (e.target.type === 'number') {
@@ -66,20 +65,21 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
     })
       .then(response => response.json())
       .then((result: any) => {
-        console.log(result);
-        const { token, company } = result;
-        localStorage.setItem('token', token);
-        localStorage.setItem('company', company);
+        if (result.error) {
+          this.setState({ errorMassage: result.error });
+        } else {
+          const { token, company } = result;
+          localStorage.setItem('token', token);
+          localStorage.setItem('company', company);
+        }
       })
       .catch(error => {
-        console.log('catch===>>>', error);
-        this.setState({ errorMassage: error });
+        console.error('catch===>>>', error);
       });
   };
 
   render() {
     const { errorMassage } = this.state;
-    console.log('massage==>>', errorMassage);
     return (
       <div className="body">
         <div className="main-holder">
@@ -104,9 +104,7 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
               className="login-form-field"
               placeholder="Password"
             />
-            {errorMassage && (
-              <div className="errorMassage">{this.state.errorMassage}</div>
-            )}
+            {errorMassage && <div className="errorMassage">{errorMassage}</div>}
             <button
               value="Login"
               className="login-form-submit"
