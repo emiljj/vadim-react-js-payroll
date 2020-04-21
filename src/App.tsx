@@ -30,12 +30,12 @@ const App: React.FC = () => {
         path="/admin-profile"
         protectedComponent={ProfilePage}
       />
-      <PrivateRoute exact path="/payments" protectedComponent={PaymentsPage} />
       <PrivateRoute
         exact
         path="/payee/:payeeId"
         protectedComponent={PayeeProfilePage}
       />
+      <PrivateRoute exact path="/payments" protectedComponent={PaymentsPage} />
     </div>
   );
 };
