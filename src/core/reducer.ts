@@ -12,13 +12,12 @@ import {
   LOGIN_SUCCESS,
 } from './constants';
 import { IPayee, IPayments, ICompany } from './payee/payee.types';
+import { connectRouter } from 'connected-react-router';
+import history from '../core/utils/history';
 
 const setActive = (list: IPayee[], id: string, active: boolean) => {
   const newList = [...list];
-  console.log('===>', newList);
   const index = list.findIndex(element => element._id === id);
-  console.log('===>', index);
-  console.log('===>', newList[index]);
   list.splice(index, 1, Object.assign(newList[index], { active }));
   return newList;
 };
@@ -80,4 +79,5 @@ export default combineReducers({
   companyBalance,
   payments,
   company,
+  router: connectRouter(history),
 });
