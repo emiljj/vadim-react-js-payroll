@@ -21,9 +21,6 @@ const Header = () => {
         <NavLink className="header_link" to="/payments">
           Payments
         </NavLink>
-        <NavLink className="header_link" to="/login">
-          Login
-        </NavLink>
       </div>
     </div>
   );

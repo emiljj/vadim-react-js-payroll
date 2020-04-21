@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { successLoginAction } from '../../core/actions';
 import { ActionCreator, AnyAction } from 'redux';
+import { push, Push } from 'connected-react-router';
 import { ICompany } from '../../core/payee/payee.types';
 import './login.style.css';
 
@@ -18,6 +19,7 @@ export const loginFormFields = {
 interface IPaymentFormProps {
   company: ICompany[];
   successLogin: ActionCreator<AnyAction>;
+  redirectTo: Push;
   loginButtonSave: (data: any) => void;
   initialValues?: { [key: string]: string | number };
 }
@@ -69,12 +71,13 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
           this.setState({ errorMassage: result.error });
         } else {
           const { token, company } = result;
-          localStorage.setItem('token', token);
-          localStorage.setItem('company', company);
+          localStorage.setItem('token', JSON.stringify(token));
+          localStorage.setItem('company', JSON.stringify(company));
+          this.props.redirectTo('/payees');
         }
       })
       .catch(error => {
-        console.error('catch===>>>', error);
+        console.error(error);
       });
   };
 
@@ -129,6 +132,7 @@ const mapStateToProps = (state: any) => {
 
 const dispatchToProps = {
   successLogin: successLoginAction,
+  redirectTo: push,
 };
 
 export default connect(mapStateToProps, dispatchToProps)(LoginPage);

@@ -2,11 +2,11 @@ import React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 
 interface IPrivateRouteProps extends RouteProps {
-  protectedComponent: React.FC<any> | React.ComponentClass<any, any>;
+  ProtectedComponent: React.FC<any> | React.ComponentClass<any, any>;
 }
 
 const PrivateRoute: React.FC<IPrivateRouteProps> = ({
-  protectedComponent,
+  ProtectedComponent,
   ...rest
 }) => {
   let authToken = '';
@@ -17,9 +17,9 @@ const PrivateRoute: React.FC<IPrivateRouteProps> = ({
   return (
     <Route
       {...rest}
-      render={({ location }) =>
+      render={({ location, ...restRouterProps }) =>
         authToken ? (
-          protectedComponent
+          <ProtectedComponent {...restRouterProps} location={location} />
         ) : (
           <Redirect
             to={{

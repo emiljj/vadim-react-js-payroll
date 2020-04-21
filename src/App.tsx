@@ -18,24 +18,24 @@ const App: React.FC = () => {
     <div className="app">
       <Header />
       <Route exact path="/login" component={LoginPage} />
-      <PrivateRoute exact path="/" protectedComponent={HomePage} />
-      <PrivateRoute exact path="/payees" protectedComponent={PayeesPage} />
+      <PrivateRoute exact path="/" ProtectedComponent={HomePage} />
+      <PrivateRoute exact path="/payees" ProtectedComponent={PayeesPage} />
       <PrivateRoute
         exact
         path="/statistics"
-        protectedComponent={StatisticsPage}
+        ProtectedComponent={StatisticsPage}
       />
       <PrivateRoute
         exact
         path="/admin-profile"
-        protectedComponent={ProfilePage}
+        ProtectedComponent={ProfilePage}
       />
       <PrivateRoute
         exact
         path="/payee/:payeeId"
-        protectedComponent={PayeeProfilePage}
+        ProtectedComponent={PayeeProfilePage}
       />
-      <PrivateRoute exact path="/payments" protectedComponent={PaymentsPage} />
+      <PrivateRoute exact path="/payments" ProtectedComponent={PaymentsPage} />
     </div>
   );
 };
