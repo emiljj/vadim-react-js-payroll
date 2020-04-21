@@ -124,7 +124,7 @@ const PayeeProfilePage = (props: IPayeeProfilePageProps) => {
           </div>
           <div className="payee-information__right-column">
             <p>Age: {payee.age}</p>
-            <p>Role: {payee.role}</p>
+            <p>Roles: {payee.roles}</p>
             <p>With Holding Tax: {payee.withHoldingTax}</p>
             <p>Salary: {payee.salary}</p>
             <p>Card Number: {payee.cardNumber}</p>

@@ -67,10 +67,10 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
     const { payees } = this.props;
     return payees.reduce((acc, payee) => {
       const admin = 'ADMIN';
-      const role = 'User';
+      const roles = payee.roles;
       const name = `${payee.firstName} ${payee.lastName}`;
 
-      if (role.includes(admin)) {
+      if (roles.includes(admin)) {
         const comma = acc.length ? ', ' : '';
         return acc + comma + name;
       }
@@ -107,11 +107,29 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
   };
 
   activePayee = (payeeId: string) => {
-    this.props.activePayeeAction(payeeId);
+    const reqBody = { active: true };
+    fetch(`http://localhost:3001/payee/activate/${payeeId}`, {
+      method: 'PUT',
+      body: JSON.stringify(reqBody),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(result => this.props.activePayeeAction(result));
   };
 
   deactivatePayee = (payeeId: string) => {
-    this.props.deactivatePayeeAction(payeeId);
+    const reqBody = { active: false };
+    fetch(`http://localhost:3001/payee/activate/${payeeId}`, {
+      method: 'PUT',
+      body: JSON.stringify(reqBody),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(result => this.props.deactivatePayeeAction(result));
   };
 
   openForm = (): void => {
@@ -166,6 +184,21 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
       (acc, item) => acc + Number(item.salary),
       0
     );
+
+    const payment = {
+      total: totalSalary,
+      numberOfPayees: activePayee.length,
+      companyBalance: companyBalance,
+    };
+    fetch('http://localhost:3001/payment/', {
+      method: 'POST',
+      body: JSON.stringify(payment),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(result => console.log(result));
 
     if (totalSalary > companyBalance) {
       return this.setState({ showBalanceMessage: true });

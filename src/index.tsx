@@ -5,12 +5,16 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import configureStore from './core/store';
 import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import history from './core/utils/history';
 
 const store = configureStore();
 
 const WrappedWithProvider = (
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
   </Provider>
 );
 

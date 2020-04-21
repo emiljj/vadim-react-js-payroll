@@ -13,11 +13,11 @@ interface IPayeeCardProps {
   handleDeactivateBtnClick: () => void;
 }
 
-// const getRolesList = (payee: IPayee): string => {
-//   const { role } = payee;
-//   const result = role.join(',');
-//   return result;
-// };
+const getRolesList = (payee: IPayee): string => {
+  const { roles } = payee;
+  const result = roles.join(',');
+  return result;
+};
 
 const PayeeCard = (props: IPayeeCardProps) => {
   const {
@@ -104,7 +104,7 @@ const PayeeCard = (props: IPayeeCardProps) => {
             </p>
             <p>
               <strong>Roles:</strong>
-              {'User'}
+              {getRolesList(payee)}
             </p>
             <p>
               <strong>WithHoldingTax:</strong>

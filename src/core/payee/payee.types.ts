@@ -7,7 +7,7 @@ export interface IPayee {
   emailAddress: string;
   address: string;
   age: number;
-  role: string[];
+  roles: string[];
   withHoldingTax: number;
   salary: number;
   country: string;
@@ -15,4 +15,16 @@ export interface IPayee {
   socialProfileLink: string;
   cardNumber: string;
   active: boolean;
+}
+
+export interface IPayments {
+  total: number;
+  numberOfPayees: number;
+  createdAt: number;
+  companyBalance: number;
+}
+
+export interface ICompany {
+  companyID: string;
+  password: string;
 }

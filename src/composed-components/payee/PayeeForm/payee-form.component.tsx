@@ -34,6 +34,7 @@ export const payeeFormFields = {
   jobTitle: 'jobTitle',
   email: 'email',
   address: 'address',
+  roles: 'roles',
   age: 'age',
   withHoldingTax: 'withHoldingTax',
   salary: 'salary',
@@ -61,6 +62,7 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
           [payeeFormFields.email]: '',
           [payeeFormFields.address]: '',
           [payeeFormFields.age]: 18,
+          [payeeFormFields.roles]: ['USER'],
           [payeeFormFields.withHoldingTax]: 0,
           [payeeFormFields.salary]: 0,
           [payeeFormFields.country]: '',
@@ -153,7 +155,6 @@ class PayeeForm extends React.Component<IPayeeFormProps, any> {
         message: 'is a required field',
       });
     }
-    // TODO: logic with validation and put errors to errors[] array then return this array
 
     return errors;
   };

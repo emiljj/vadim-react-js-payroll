@@ -16,7 +16,7 @@
 .header__links {
   display: flex;
   justify-content: space-between;
-  width: 30%;
+  width: 40%;
 }
 
 .header_link_payroll {
