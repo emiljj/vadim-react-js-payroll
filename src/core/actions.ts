@@ -2,7 +2,7 @@ import { CREATE_PAYEE } from './constants';
 import { DELETE_PAYEE } from './constants';
 import { ACTIVE_PAYEE } from './constants';
 import { DEACTIVATE_PAYEE } from './constants';
-import { PAY_PAYEE } from './constants';
+import { PAYMENT_PAYEE } from './constants';
 import { UPDATE_PAYEE } from './constants';
 import { GET_PAYEES_SUCCESS } from './constants';
 import { GET_PAYMENTS } from './constants';
@@ -29,8 +29,8 @@ export const deactivatePayeeAction = (payload: any) => ({
   payload,
 });
 
-export const payPayeeAction = (payload: number) => ({
-  type: PAY_PAYEE,
+export const paymentPayeeAction = (payload: number) => ({
+  type: PAYMENT_PAYEE,
   payload,
 });
 

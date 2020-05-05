@@ -1,7 +1,9 @@
 import React from 'react';
 import './payees.page.style.css';
+import './payees.page';
 
 interface IPayeePageHeaderProps {
+  disabled: boolean;
   companyBalance: number;
   payeesCount: number;
   totalSalary: number;
@@ -13,6 +15,7 @@ interface IPayeePageHeaderProps {
 
 const PayeePageHeader = (props: IPayeePageHeaderProps) => {
   const {
+    disabled,
     companyBalance,
     payeesCount,
     totalSalary,
@@ -24,7 +27,10 @@ const PayeePageHeader = (props: IPayeePageHeaderProps) => {
   return (
     <div className="payee-page__header">
       <div>
-        <button className="pay-button" onClick={handlePayClick}>
+        <button
+          className="pay-button"
+          onClick={handlePayClick}
+          disabled={disabled}>
           PAY
         </button>
         <p>Company balance: {companyBalance} </p>

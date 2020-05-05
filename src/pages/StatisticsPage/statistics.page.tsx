@@ -1,8 +1,13 @@
 import React from 'react';
 import './statistics.page.style.css';
+import Layout from '../../../src/components/Layout/layout';
 
 const StatisticsPage = () => {
-  return <div>Statistics</div>;
+  return (
+    <Layout>
+      <div>Statistics</div>;
+    </Layout>
+  );
 };
 
 export default StatisticsPage;

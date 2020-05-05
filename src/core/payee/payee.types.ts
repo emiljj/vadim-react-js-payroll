@@ -25,6 +25,12 @@ export interface IPayments {
 }
 
 export interface ICompany {
-  companyID: string;
+  _id: string;
   password: string;
+  balance: number;
+  address: string;
+  phone: string;
+  email: string;
+  countOfPayees: number;
+  name: string;
 }

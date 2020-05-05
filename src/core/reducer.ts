@@ -1,7 +1,7 @@
 import { combineReducers, AnyAction } from 'redux';
 import {
   GET_PAYEES_SUCCESS,
-  PAY_PAYEE,
+  PAYMENT_PAYEE,
   DEACTIVATE_PAYEE,
   ACTIVE_PAYEE,
   DELETE_PAYEE,
@@ -11,7 +11,7 @@ import {
   GET_PAYEE_PROFILE_SUCCESS,
   LOGIN_SUCCESS,
 } from './constants';
-import { IPayee, IPayments, ICompany } from './payee/payee.types';
+import { IPayee, IPayments } from './payee/payee.types';
 import { connectRouter } from 'connected-react-router';
 import history from '../core/utils/history';
 
@@ -51,15 +51,6 @@ const payees = (state: IPayee[] = [], action: AnyAction) => {
   return state;
 };
 
-const companyBalance = (state = 2500, action: AnyAction) => {
-  if (action.type === PAY_PAYEE) {
-    let balance = state;
-    balance = balance - action.payload;
-    return balance;
-  }
-  return state;
-};
-
 const payments = (state: IPayments[] = [], action: AnyAction) => {
   if (action.type === GET_PAYMENTS) {
     return action.payload;
@@ -67,16 +58,23 @@ const payments = (state: IPayments[] = [], action: AnyAction) => {
   return state;
 };
 
-const company = (state: ICompany[] = [], action: AnyAction) => {
+const company = (_: any, action: AnyAction) => {
+  let state = null;
+  const savedCompany = localStorage.getItem('company');
+  if (savedCompany) {
+    state = JSON.parse(savedCompany);
+  }
   if (action.type === LOGIN_SUCCESS) {
     return action.payload;
+  }
+  if (action.type === PAYMENT_PAYEE) {
+    state = action.payload;
   }
   return state;
 };
 
 export default combineReducers({
   payees,
-  companyBalance,
   payments,
   company,
   router: connectRouter(history),

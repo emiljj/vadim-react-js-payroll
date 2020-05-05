@@ -124,15 +124,9 @@ class LoginPage extends React.Component<IPaymentFormProps, any> {
   }
 }
 
-const mapStateToProps = (state: any) => {
-  return {
-    company: state.company,
-  };
-};
-
 const dispatchToProps = {
   successLogin: successLoginAction,
   redirectTo: push,
 };
 
-export default connect(mapStateToProps, dispatchToProps)(LoginPage);
+export default connect(null, dispatchToProps)(LoginPage);
