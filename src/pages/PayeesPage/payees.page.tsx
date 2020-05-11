@@ -164,10 +164,6 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
     this.setState({ showBalanceMessage: false });
   };
 
-  successMassage = (): void => {
-    this.setState({ showSuccessMessage: true });
-  };
-
   closeSuccessMassage = (): void => {
     this.setState({ showSuccessMessage: false });
   };
@@ -194,7 +190,6 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
   };
 
   handlePayClick = () => {
-    this.setState({ disabled: false });
     const { payees, companyBalance, company } = this.props;
     const activePayee = payees.filter(item => item.active === true);
     const totalSalary = activePayee.reduce(
@@ -214,6 +209,7 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
     } else if (!totalSalary) {
       return this.setState({ showNotPayeesMessage: true });
     } else if (totalSalary) {
+      this.setState({ disabled: true });
       fetch('http://localhost:3001/payment/', {
         method: 'POST',
         body: JSON.stringify(payment),
@@ -225,7 +221,7 @@ class PayeesPage extends React.Component<IPayeesPageProps, IPayeesPageState> {
         .then((company: ICompany) => {
           localStorage.setItem('company', JSON.stringify(company));
           this.props.paymentPayeeAction(company);
-          this.setState({ disabled: true });
+          this.setState({ showSuccessMessage: true });
           this.setState({ disabled: false });
         })
         .catch(console.error);

@@ -6,6 +6,7 @@ import ProfilePage from './pages/ProfilePage/profile.page';
 import HomePage from './pages/HomePage/home.page';
 import LoginPage from './pages/LoginPage/login.page';
 import PaymentsPage from './pages/PaymentPage/payments.page';
+import Company from './pages/companyPage/company.profile.page';
 
 import PayeeProfilePage from './pages/PayeeProfilePage/payee.profile.page';
 import { Route } from 'react-router-dom';
@@ -35,6 +36,7 @@ const App: React.FC = () => {
         ProtectedComponent={PayeeProfilePage}
       />
       <PrivateRoute exact path="/payments" ProtectedComponent={PaymentsPage} />
+      <PrivateRoute exact path="/company" ProtectedComponent={Company} />
     </div>
   );
 };

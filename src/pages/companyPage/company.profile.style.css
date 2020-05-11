@@ -1,0 +1,76 @@
+.main {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+
+.company-info {
+  display: flex;
+  flex-direction: row;
+  width: 65%;
+  height: 180px;
+  background-color: rgb(238 246 249);
+  justify-content: space-around;
+  align-items: center;
+}
+
+.company_photo {
+  width: 600px;
+  height: 140px;
+}
+
+.company__name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 50px;
+  justify-content: center;
+  margin-left: 5px;
+  font-weight: bold;
+  line-height: 10px;
+  width: auto;
+  height: 95%;
+}
+.one {
+  width: auto;
+  padding-left: 25px;
+}
+
+.two {
+  width: auto;
+  padding-left: 55px;
+}
+
+.three {
+  padding-left: 85px;
+  width: auto;
+}
+
+.company-form {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+  line-height: 5px;
+  margin-top: 50px;
+  width: 65%;
+  height: auto;
+}
+
+.company-form-right {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-left: 100px;
+}
+
+.company-form-left {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}

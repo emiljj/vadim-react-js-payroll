@@ -21,6 +21,9 @@ const Header = () => {
         <NavLink className="header_link" to="/payments">
           Payments
         </NavLink>
+        <NavLink className="header_link" to="/company">
+          Company Profile
+        </NavLink>
       </div>
     </div>
   );
